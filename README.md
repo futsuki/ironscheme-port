@@ -2,7 +2,7 @@
 
 PUBLIC DOMAIN
 
-- ironschemeから.NETなどのメソッドを呼び出すラッパーを自動作成するものです
+- IronSchemeから.NETなどのメソッドを呼び出すラッパーを自動作成するものです
 - 使い方の例(System.String.StartsWith)
 ```scheme
 (import (prefix (system string) string-))
