@@ -1,0 +1,11 @@
+(library (unity-engine player-prefs-exception)
+  (export new is? player-prefs-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.PlayerPrefsException a ...)))))
+  (define (is? a) (clr-is UnityEngine.PlayerPrefsException a))
+  (define (player-prefs-exception? a)
+    (clr-is UnityEngine.PlayerPrefsException a)))

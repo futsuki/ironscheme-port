@@ -1,0 +1,11 @@
+(library (system reflection ambiguous-match-exception)
+  (export new is? ambiguous-match-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Reflection.AmbiguousMatchException a ...)))))
+  (define (is? a) (clr-is System.Reflection.AmbiguousMatchException a))
+  (define (ambiguous-match-exception? a)
+    (clr-is System.Reflection.AmbiguousMatchException a)))

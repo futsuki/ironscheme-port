@@ -1,0 +1,10 @@
+(library (system execution-engine-exception)
+  (export new is? execution-engine-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.ExecutionEngineException a ...)))))
+  (define (is? a) (clr-is System.ExecutionEngineException a))
+  (define (execution-engine-exception? a)
+    (clr-is System.ExecutionEngineException a)))

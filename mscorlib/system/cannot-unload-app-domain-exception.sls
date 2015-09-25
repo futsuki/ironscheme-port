@@ -1,0 +1,11 @@
+(library (system cannot-unload-app-domain-exception)
+  (export new is? cannot-unload-app-domain-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.CannotUnloadAppDomainException a ...)))))
+  (define (is? a) (clr-is System.CannotUnloadAppDomainException a))
+  (define (cannot-unload-app-domain-exception? a)
+    (clr-is System.CannotUnloadAppDomainException a)))

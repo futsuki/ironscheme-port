@@ -1,0 +1,10 @@
+(library (system file-style-uri-parser)
+  (export new is? file-style-uri-parser?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.FileStyleUriParser a ...)))))
+  (define (is? a) (clr-is System.FileStyleUriParser a))
+  (define (file-style-uri-parser? a)
+    (clr-is System.FileStyleUriParser a)))

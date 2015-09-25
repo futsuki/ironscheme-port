@@ -1,0 +1,61 @@
+(library (system runtime remoting metadata w3c-xsd2001 soap-hex-binary)
+  (export new
+          is?
+          soap-hex-binary?
+          parse
+          get-xsd-type
+          to-string
+          value-get
+          value-set!
+          value-update!
+          xsd-type)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new
+             System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+             a
+             ...)))))
+  (define (is? a)
+    (clr-is
+      System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+      a))
+  (define (soap-hex-binary? a)
+    (clr-is
+      System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+      a))
+  (define-method-port
+    parse
+    System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+    Parse
+    (static:
+      System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+      System.String))
+  (define-method-port
+    get-xsd-type
+    System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+    GetXsdType
+    (System.String))
+  (define-method-port
+    to-string
+    System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+    ToString
+    (System.String))
+  (define-field-port
+    value-get
+    value-set!
+    value-update!
+    (property:)
+    System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+    Value
+    System.Byte[])
+  (define-field-port
+    xsd-type
+    #f
+    #f
+    (static: property:)
+    System.Runtime.Remoting.Metadata.W3cXsd2001.SoapHexBinary
+    XsdType
+    System.String))

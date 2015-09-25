@@ -1,0 +1,11 @@
+(library (system data common double-data-container)
+  (export new is? double-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.DoubleDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.DoubleDataContainer a))
+  (define (double-data-container? a)
+    (clr-is System.Data.Common.DoubleDataContainer a)))

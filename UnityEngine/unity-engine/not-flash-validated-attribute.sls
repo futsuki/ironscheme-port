@@ -1,0 +1,11 @@
+(library (unity-engine not-flash-validated-attribute)
+  (export new is? not-flash-validated-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.NotFlashValidatedAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.NotFlashValidatedAttribute a))
+  (define (not-flash-validated-attribute? a)
+    (clr-is UnityEngine.NotFlashValidatedAttribute a)))

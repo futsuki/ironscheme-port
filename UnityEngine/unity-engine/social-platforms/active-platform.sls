@@ -1,0 +1,6 @@
+(library (unity-engine social-platforms active-platform)
+  (export is? active-platform?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.SocialPlatforms.ActivePlatform a))
+  (define (active-platform? a)
+    (clr-is UnityEngine.SocialPlatforms.ActivePlatform a)))

@@ -1,0 +1,11 @@
+(library (system time-zone-not-found-exception)
+  (export new is? time-zone-not-found-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.TimeZoneNotFoundException a ...)))))
+  (define (is? a) (clr-is System.TimeZoneNotFoundException a))
+  (define (time-zone-not-found-exception? a)
+    (clr-is System.TimeZoneNotFoundException a)))

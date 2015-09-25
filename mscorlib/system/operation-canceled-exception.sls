@@ -1,0 +1,11 @@
+(library (system operation-canceled-exception)
+  (export new is? operation-canceled-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.OperationCanceledException a ...)))))
+  (define (is? a) (clr-is System.OperationCanceledException a))
+  (define (operation-canceled-exception? a)
+    (clr-is System.OperationCanceledException a)))

@@ -1,0 +1,5 @@
+(library (system data common record-cache)
+  (export is? record-cache?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.Common.RecordCache a))
+  (define (record-cache? a) (clr-is System.Data.Common.RecordCache a)))

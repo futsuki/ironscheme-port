@@ -1,0 +1,82 @@
+(library (system text encoder)
+  (export is?
+          encoder?
+          convert
+          get-bytes
+          get-byte-count
+          reset
+          fallback-get
+          fallback-set!
+          fallback-update!
+          fallback-buffer)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Text.Encoder a))
+  (define (encoder? a) (clr-is System.Text.Encoder a))
+  (define-method-port
+    convert
+    System.Text.Encoder
+    Convert
+    (System.Void
+      System.Char[]
+      System.Int32
+      System.Int32
+      System.Byte[]
+      System.Int32
+      System.Int32
+      System.Boolean
+      System.Int32&
+      System.Int32&
+      System.Boolean&)
+    (System.Void
+      System.Char*
+      System.Int32
+      System.Byte*
+      System.Int32
+      System.Boolean
+      System.Int32&
+      System.Int32&
+      System.Boolean&))
+  (define-method-port
+    get-bytes
+    System.Text.Encoder
+    GetBytes
+    (System.Int32
+      System.Char*
+      System.Int32
+      System.Byte*
+      System.Int32
+      System.Boolean)
+    (System.Int32
+      System.Char[]
+      System.Int32
+      System.Int32
+      System.Byte[]
+      System.Int32
+      System.Boolean))
+  (define-method-port
+    get-byte-count
+    System.Text.Encoder
+    GetByteCount
+    (System.Int32 System.Char* System.Int32 System.Boolean)
+    (System.Int32
+      System.Char[]
+      System.Int32
+      System.Int32
+      System.Boolean))
+  (define-method-port reset System.Text.Encoder Reset (System.Void))
+  (define-field-port
+    fallback-get
+    fallback-set!
+    fallback-update!
+    (property:)
+    System.Text.Encoder
+    Fallback
+    System.Text.EncoderFallback)
+  (define-field-port
+    fallback-buffer
+    #f
+    #f
+    (property:)
+    System.Text.Encoder
+    FallbackBuffer
+    System.Text.EncoderFallbackBuffer))

@@ -1,0 +1,10 @@
+(library (system io end-of-stream-exception)
+  (export new is? end-of-stream-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.IO.EndOfStreamException a ...)))))
+  (define (is? a) (clr-is System.IO.EndOfStreamException a))
+  (define (end-of-stream-exception? a)
+    (clr-is System.IO.EndOfStreamException a)))

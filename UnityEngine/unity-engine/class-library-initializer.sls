@@ -1,0 +1,6 @@
+(library (unity-engine class-library-initializer)
+  (export is? class-library-initializer?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.ClassLibraryInitializer a))
+  (define (class-library-initializer? a)
+    (clr-is UnityEngine.ClassLibraryInitializer a)))

@@ -1,0 +1,10 @@
+(library (unity-engine wrapperless-icall)
+  (export new is? wrapperless-icall?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.WrapperlessIcall a ...)))))
+  (define (is? a) (clr-is UnityEngine.WrapperlessIcall a))
+  (define (wrapperless-icall? a)
+    (clr-is UnityEngine.WrapperlessIcall a)))

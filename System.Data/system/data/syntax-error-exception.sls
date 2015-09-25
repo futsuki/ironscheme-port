@@ -1,0 +1,11 @@
+(library (system data syntax-error-exception)
+  (export new is? syntax-error-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.SyntaxErrorException a ...)))))
+  (define (is? a) (clr-is System.Data.SyntaxErrorException a))
+  (define (syntax-error-exception? a)
+    (clr-is System.Data.SyntaxErrorException a)))

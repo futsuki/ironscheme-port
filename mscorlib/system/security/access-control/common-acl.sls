@@ -1,0 +1,90 @@
+(library (system security access-control common-acl)
+  (export is?
+          common-acl?
+          get-binary-form
+          remove-inherited-aces
+          purge
+          binary-length
+          count
+          is-canonical?
+          is-container?
+          is-ds?
+          item-get
+          item-set!
+          item-update!
+          revision)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Security.AccessControl.CommonAcl a))
+  (define (common-acl? a)
+    (clr-is System.Security.AccessControl.CommonAcl a))
+  (define-method-port
+    get-binary-form
+    System.Security.AccessControl.CommonAcl
+    GetBinaryForm
+    (System.Void System.Byte[] System.Int32))
+  (define-method-port
+    remove-inherited-aces
+    System.Security.AccessControl.CommonAcl
+    RemoveInheritedAces
+    (System.Void))
+  (define-method-port
+    purge
+    System.Security.AccessControl.CommonAcl
+    Purge
+    (System.Void System.Security.Principal.SecurityIdentifier))
+  (define-field-port
+    binary-length
+    #f
+    #f
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    BinaryLength
+    System.Int32)
+  (define-field-port
+    count
+    #f
+    #f
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    Count
+    System.Int32)
+  (define-field-port
+    is-canonical?
+    #f
+    #f
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    IsCanonical
+    System.Boolean)
+  (define-field-port
+    is-container?
+    #f
+    #f
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    IsContainer
+    System.Boolean)
+  (define-field-port
+    is-ds?
+    #f
+    #f
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    IsDS
+    System.Boolean)
+  (define-field-port
+    item-get
+    item-set!
+    item-update!
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    Item
+    System.Security.AccessControl.GenericAce)
+  (define-field-port
+    revision
+    #f
+    #f
+    (property:)
+    System.Security.AccessControl.CommonAcl
+    Revision
+    System.Byte))

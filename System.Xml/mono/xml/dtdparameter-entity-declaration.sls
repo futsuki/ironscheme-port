@@ -1,0 +1,6 @@
+(library (mono xml dtdparameter-entity-declaration)
+  (export is? dtdparameter-entity-declaration?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is Mono.Xml.DTDParameterEntityDeclaration a))
+  (define (dtdparameter-entity-declaration? a)
+    (clr-is Mono.Xml.DTDParameterEntityDeclaration a)))

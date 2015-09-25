@@ -1,0 +1,70 @@
+(library (mono xml schema xdt-year-month-duration)
+  (export is?
+          xdt-year-month-duration?
+          parse-value
+          type-code
+          value-type
+          bounded?
+          finite?
+          numeric?
+          ordered)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is Mono.Xml.Schema.XdtYearMonthDuration a))
+  (define (xdt-year-month-duration? a)
+    (clr-is Mono.Xml.Schema.XdtYearMonthDuration a))
+  (define-method-port
+    parse-value
+    Mono.Xml.Schema.XdtYearMonthDuration
+    ParseValue
+    (System.Object
+      System.String
+      System.Xml.XmlNameTable
+      System.Xml.IXmlNamespaceResolver))
+  (define-field-port
+    type-code
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtYearMonthDuration
+    TypeCode
+    System.Xml.Schema.XmlTypeCode)
+  (define-field-port
+    value-type
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtYearMonthDuration
+    ValueType
+    System.Type)
+  (define-field-port
+    bounded?
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtYearMonthDuration
+    Bounded
+    System.Boolean)
+  (define-field-port
+    finite?
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtYearMonthDuration
+    Finite
+    System.Boolean)
+  (define-field-port
+    numeric?
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtYearMonthDuration
+    Numeric
+    System.Boolean)
+  (define-field-port
+    ordered
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtYearMonthDuration
+    Ordered
+    Mono.Xml.Schema.XsdOrderedFacet))

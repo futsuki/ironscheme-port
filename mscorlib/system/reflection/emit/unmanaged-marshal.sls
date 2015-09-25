@@ -1,0 +1,90 @@
+(library (system reflection emit unmanaged-marshal)
+  (export is?
+          unmanaged-marshal?
+          define-unmanaged-marshal
+          define-custom
+          define-by-val-tstr
+          define-safe-array
+          define-by-val-array
+          define-lparray
+          base-type
+          element-count
+          get-unmanaged-type
+          iidguid)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Reflection.Emit.UnmanagedMarshal a))
+  (define (unmanaged-marshal? a)
+    (clr-is System.Reflection.Emit.UnmanagedMarshal a))
+  (define-method-port
+    define-unmanaged-marshal
+    System.Reflection.Emit.UnmanagedMarshal
+    DefineUnmanagedMarshal
+    (static:
+      System.Reflection.Emit.UnmanagedMarshal
+      System.Runtime.InteropServices.UnmanagedType))
+  (define-method-port
+    define-custom
+    System.Reflection.Emit.UnmanagedMarshal
+    DefineCustom
+    (static:
+      System.Reflection.Emit.UnmanagedMarshal
+      System.Type
+      System.String
+      System.String
+      System.Guid))
+  (define-method-port
+    define-by-val-tstr
+    System.Reflection.Emit.UnmanagedMarshal
+    DefineByValTStr
+    (static: System.Reflection.Emit.UnmanagedMarshal System.Int32))
+  (define-method-port
+    define-safe-array
+    System.Reflection.Emit.UnmanagedMarshal
+    DefineSafeArray
+    (static:
+      System.Reflection.Emit.UnmanagedMarshal
+      System.Runtime.InteropServices.UnmanagedType))
+  (define-method-port
+    define-by-val-array
+    System.Reflection.Emit.UnmanagedMarshal
+    DefineByValArray
+    (static: System.Reflection.Emit.UnmanagedMarshal System.Int32))
+  (define-method-port
+    define-lparray
+    System.Reflection.Emit.UnmanagedMarshal
+    DefineLPArray
+    (static:
+      System.Reflection.Emit.UnmanagedMarshal
+      System.Runtime.InteropServices.UnmanagedType))
+  (define-field-port
+    base-type
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.UnmanagedMarshal
+    BaseType
+    System.Runtime.InteropServices.UnmanagedType)
+  (define-field-port
+    element-count
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.UnmanagedMarshal
+    ElementCount
+    System.Int32)
+  (define-field-port
+    get-unmanaged-type
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.UnmanagedMarshal
+    GetUnmanagedType
+    System.Runtime.InteropServices.UnmanagedType)
+  (define-field-port
+    iidguid
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.UnmanagedMarshal
+    IIDGuid
+    System.Guid))

@@ -1,0 +1,6 @@
+(library (system runtime compiler-services is-boxed)
+  (export is? is-boxed?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Runtime.CompilerServices.IsBoxed a))
+  (define (is-boxed? a)
+    (clr-is System.Runtime.CompilerServices.IsBoxed a)))

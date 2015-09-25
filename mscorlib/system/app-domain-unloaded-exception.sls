@@ -1,0 +1,11 @@
+(library (system app-domain-unloaded-exception)
+  (export new is? app-domain-unloaded-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.AppDomainUnloadedException a ...)))))
+  (define (is? a) (clr-is System.AppDomainUnloadedException a))
+  (define (app-domain-unloaded-exception? a)
+    (clr-is System.AppDomainUnloadedException a)))

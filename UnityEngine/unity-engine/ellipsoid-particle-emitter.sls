@@ -1,0 +1,6 @@
+(library (unity-engine ellipsoid-particle-emitter)
+  (export is? ellipsoid-particle-emitter?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.EllipsoidParticleEmitter a))
+  (define (ellipsoid-particle-emitter? a)
+    (clr-is UnityEngine.EllipsoidParticleEmitter a)))

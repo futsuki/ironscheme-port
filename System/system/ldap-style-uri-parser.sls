@@ -1,0 +1,10 @@
+(library (system ldap-style-uri-parser)
+  (export new is? ldap-style-uri-parser?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.LdapStyleUriParser a ...)))))
+  (define (is? a) (clr-is System.LdapStyleUriParser a))
+  (define (ldap-style-uri-parser? a)
+    (clr-is System.LdapStyleUriParser a)))

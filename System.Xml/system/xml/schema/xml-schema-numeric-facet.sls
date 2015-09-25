@@ -1,0 +1,6 @@
+(library (system xml schema xml-schema-numeric-facet)
+  (export is? xml-schema-numeric-facet?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaNumericFacet a))
+  (define (xml-schema-numeric-facet? a)
+    (clr-is System.Xml.Schema.XmlSchemaNumericFacet a)))

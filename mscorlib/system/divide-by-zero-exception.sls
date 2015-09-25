@@ -1,0 +1,10 @@
+(library (system divide-by-zero-exception)
+  (export new is? divide-by-zero-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.DivideByZeroException a ...)))))
+  (define (is? a) (clr-is System.DivideByZeroException a))
+  (define (divide-by-zero-exception? a)
+    (clr-is System.DivideByZeroException a)))

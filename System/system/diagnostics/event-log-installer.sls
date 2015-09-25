@@ -1,0 +1,11 @@
+(library (system diagnostics event-log-installer)
+  (export new is? event-log-installer?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Diagnostics.EventLogInstaller a ...)))))
+  (define (is? a) (clr-is System.Diagnostics.EventLogInstaller a))
+  (define (event-log-installer? a)
+    (clr-is System.Diagnostics.EventLogInstaller a)))

@@ -1,0 +1,11 @@
+(library (system xml schema xml-schema-pattern-facet)
+  (export new is? xml-schema-pattern-facet?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Xml.Schema.XmlSchemaPatternFacet a ...)))))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaPatternFacet a))
+  (define (xml-schema-pattern-facet? a)
+    (clr-is System.Xml.Schema.XmlSchemaPatternFacet a)))

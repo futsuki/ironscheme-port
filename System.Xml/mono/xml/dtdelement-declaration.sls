@@ -1,0 +1,69 @@
+(library (mono xml dtdelement-declaration)
+  (export is?
+          dtdelement-declaration?
+          name-get
+          name-set!
+          name-update!
+          is-empty?-get
+          is-empty?-set!
+          is-empty?-update!
+          is-any?-get
+          is-any?-set!
+          is-any?-update!
+          is-mixed-content?-get
+          is-mixed-content?-set!
+          is-mixed-content?-update!
+          content-model
+          attributes)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is Mono.Xml.DTDElementDeclaration a))
+  (define (dtdelement-declaration? a)
+    (clr-is Mono.Xml.DTDElementDeclaration a))
+  (define-field-port
+    name-get
+    name-set!
+    name-update!
+    (property:)
+    Mono.Xml.DTDElementDeclaration
+    Name
+    System.String)
+  (define-field-port
+    is-empty?-get
+    is-empty?-set!
+    is-empty?-update!
+    (property:)
+    Mono.Xml.DTDElementDeclaration
+    IsEmpty
+    System.Boolean)
+  (define-field-port
+    is-any?-get
+    is-any?-set!
+    is-any?-update!
+    (property:)
+    Mono.Xml.DTDElementDeclaration
+    IsAny
+    System.Boolean)
+  (define-field-port
+    is-mixed-content?-get
+    is-mixed-content?-set!
+    is-mixed-content?-update!
+    (property:)
+    Mono.Xml.DTDElementDeclaration
+    IsMixedContent
+    System.Boolean)
+  (define-field-port
+    content-model
+    #f
+    #f
+    (property:)
+    Mono.Xml.DTDElementDeclaration
+    ContentModel
+    Mono.Xml.DTDContentModel)
+  (define-field-port
+    attributes
+    #f
+    #f
+    (property:)
+    Mono.Xml.DTDElementDeclaration
+    Attributes
+    Mono.Xml.DTDAttListDeclaration))

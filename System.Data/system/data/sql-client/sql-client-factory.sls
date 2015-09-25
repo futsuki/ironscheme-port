@@ -1,0 +1,74 @@
+(library (system data sql-client sql-client-factory)
+  (export is?
+          sql-client-factory?
+          create-connection
+          create-permission
+          create-command-builder
+          create-data-adapter
+          create-connection-string-builder
+          create-parameter
+          create-data-source-enumerator
+          create-command
+          instance
+          can-create-data-source-enumerator?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.SqlClient.SqlClientFactory a))
+  (define (sql-client-factory? a)
+    (clr-is System.Data.SqlClient.SqlClientFactory a))
+  (define-method-port
+    create-connection
+    System.Data.SqlClient.SqlClientFactory
+    CreateConnection
+    (System.Data.Common.DbConnection))
+  (define-method-port
+    create-permission
+    System.Data.SqlClient.SqlClientFactory
+    CreatePermission
+    (System.Security.CodeAccessPermission
+      System.Security.Permissions.PermissionState))
+  (define-method-port
+    create-command-builder
+    System.Data.SqlClient.SqlClientFactory
+    CreateCommandBuilder
+    (System.Data.Common.DbCommandBuilder))
+  (define-method-port
+    create-data-adapter
+    System.Data.SqlClient.SqlClientFactory
+    CreateDataAdapter
+    (System.Data.Common.DbDataAdapter))
+  (define-method-port
+    create-connection-string-builder
+    System.Data.SqlClient.SqlClientFactory
+    CreateConnectionStringBuilder
+    (System.Data.Common.DbConnectionStringBuilder))
+  (define-method-port
+    create-parameter
+    System.Data.SqlClient.SqlClientFactory
+    CreateParameter
+    (System.Data.Common.DbParameter))
+  (define-method-port
+    create-data-source-enumerator
+    System.Data.SqlClient.SqlClientFactory
+    CreateDataSourceEnumerator
+    (System.Data.Common.DbDataSourceEnumerator))
+  (define-method-port
+    create-command
+    System.Data.SqlClient.SqlClientFactory
+    CreateCommand
+    (System.Data.Common.DbCommand))
+  (define-field-port
+    instance
+    #f
+    #f
+    (static:)
+    System.Data.SqlClient.SqlClientFactory
+    Instance
+    System.Data.SqlClient.SqlClientFactory)
+  (define-field-port
+    can-create-data-source-enumerator?
+    #f
+    #f
+    (property:)
+    System.Data.SqlClient.SqlClientFactory
+    CanCreateDataSourceEnumerator
+    System.Boolean))

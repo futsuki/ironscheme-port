@@ -1,0 +1,89 @@
+(library (system text decoder)
+  (export is?
+          decoder?
+          get-chars
+          convert
+          get-char-count
+          reset
+          fallback-get
+          fallback-set!
+          fallback-update!
+          fallback-buffer)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Text.Decoder a))
+  (define (decoder? a) (clr-is System.Text.Decoder a))
+  (define-method-port
+    get-chars
+    System.Text.Decoder
+    GetChars
+    (System.Int32
+      System.Byte*
+      System.Int32
+      System.Char*
+      System.Int32
+      System.Boolean)
+    (System.Int32
+      System.Byte[]
+      System.Int32
+      System.Int32
+      System.Char[]
+      System.Int32
+      System.Boolean)
+    (System.Int32
+      System.Byte[]
+      System.Int32
+      System.Int32
+      System.Char[]
+      System.Int32))
+  (define-method-port
+    convert
+    System.Text.Decoder
+    Convert
+    (System.Void
+      System.Byte[]
+      System.Int32
+      System.Int32
+      System.Char[]
+      System.Int32
+      System.Int32
+      System.Boolean
+      System.Int32&
+      System.Int32&
+      System.Boolean&)
+    (System.Void
+      System.Byte*
+      System.Int32
+      System.Char*
+      System.Int32
+      System.Boolean
+      System.Int32&
+      System.Int32&
+      System.Boolean&))
+  (define-method-port
+    get-char-count
+    System.Text.Decoder
+    GetCharCount
+    (System.Int32 System.Byte* System.Int32 System.Boolean)
+    (System.Int32
+      System.Byte[]
+      System.Int32
+      System.Int32
+      System.Boolean)
+    (System.Int32 System.Byte[] System.Int32 System.Int32))
+  (define-method-port reset System.Text.Decoder Reset (System.Void))
+  (define-field-port
+    fallback-get
+    fallback-set!
+    fallback-update!
+    (property:)
+    System.Text.Decoder
+    Fallback
+    System.Text.DecoderFallback)
+  (define-field-port
+    fallback-buffer
+    #f
+    #f
+    (property:)
+    System.Text.Decoder
+    FallbackBuffer
+    System.Text.DecoderFallbackBuffer))

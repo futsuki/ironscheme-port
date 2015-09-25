@@ -1,0 +1,144 @@
+(library (unity-engine ui scrollbar)
+  (export is?
+          scrollbar?
+          find-selectable-on-left
+          on-pointer-down
+          find-selectable-on-right
+          find-selectable-on-down
+          on-initialize-potential-drag
+          on-drag
+          rebuild
+          find-selectable-on-up
+          on-begin-drag
+          on-pointer-up
+          on-move
+          set-direction
+          handle-rect-get
+          handle-rect-set!
+          handle-rect-update!
+          direction-get
+          direction-set!
+          direction-update!
+          value-get
+          value-set!
+          value-update!
+          size-get
+          size-set!
+          size-update!
+          number-of-steps-get
+          number-of-steps-set!
+          number-of-steps-update!
+          on-value-changed-get
+          on-value-changed-set!
+          on-value-changed-update!)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.UI.Scrollbar a))
+  (define (scrollbar? a) (clr-is UnityEngine.UI.Scrollbar a))
+  (define-method-port
+    find-selectable-on-left
+    UnityEngine.UI.Scrollbar
+    FindSelectableOnLeft
+    (UnityEngine.UI.Selectable))
+  (define-method-port
+    on-pointer-down
+    UnityEngine.UI.Scrollbar
+    OnPointerDown
+    (System.Void UnityEngine.EventSystems.PointerEventData))
+  (define-method-port
+    find-selectable-on-right
+    UnityEngine.UI.Scrollbar
+    FindSelectableOnRight
+    (UnityEngine.UI.Selectable))
+  (define-method-port
+    find-selectable-on-down
+    UnityEngine.UI.Scrollbar
+    FindSelectableOnDown
+    (UnityEngine.UI.Selectable))
+  (define-method-port
+    on-initialize-potential-drag
+    UnityEngine.UI.Scrollbar
+    OnInitializePotentialDrag
+    (System.Void UnityEngine.EventSystems.PointerEventData))
+  (define-method-port
+    on-drag
+    UnityEngine.UI.Scrollbar
+    OnDrag
+    (System.Void UnityEngine.EventSystems.PointerEventData))
+  (define-method-port
+    rebuild
+    UnityEngine.UI.Scrollbar
+    Rebuild
+    (System.Void UnityEngine.UI.CanvasUpdate))
+  (define-method-port
+    find-selectable-on-up
+    UnityEngine.UI.Scrollbar
+    FindSelectableOnUp
+    (UnityEngine.UI.Selectable))
+  (define-method-port
+    on-begin-drag
+    UnityEngine.UI.Scrollbar
+    OnBeginDrag
+    (System.Void UnityEngine.EventSystems.PointerEventData))
+  (define-method-port
+    on-pointer-up
+    UnityEngine.UI.Scrollbar
+    OnPointerUp
+    (System.Void UnityEngine.EventSystems.PointerEventData))
+  (define-method-port
+    on-move
+    UnityEngine.UI.Scrollbar
+    OnMove
+    (System.Void UnityEngine.EventSystems.AxisEventData))
+  (define-method-port
+    set-direction
+    UnityEngine.UI.Scrollbar
+    SetDirection
+    (System.Void UnityEngine.UI.Scrollbar+Direction System.Boolean))
+  (define-field-port
+    handle-rect-get
+    handle-rect-set!
+    handle-rect-update!
+    (property:)
+    UnityEngine.UI.Scrollbar
+    handleRect
+    UnityEngine.RectTransform)
+  (define-field-port
+    direction-get
+    direction-set!
+    direction-update!
+    (property:)
+    UnityEngine.UI.Scrollbar
+    direction
+    UnityEngine.UI.Scrollbar+Direction)
+  (define-field-port
+    value-get
+    value-set!
+    value-update!
+    (property:)
+    UnityEngine.UI.Scrollbar
+    value
+    System.Single)
+  (define-field-port
+    size-get
+    size-set!
+    size-update!
+    (property:)
+    UnityEngine.UI.Scrollbar
+    size
+    System.Single)
+  (define-field-port
+    number-of-steps-get
+    number-of-steps-set!
+    number-of-steps-update!
+    (property:)
+    UnityEngine.UI.Scrollbar
+    numberOfSteps
+    System.Int32)
+  (define-field-port
+    on-value-changed-get
+    on-value-changed-set!
+    on-value-changed-update!
+    (property:)
+    UnityEngine.UI.Scrollbar
+    onValueChanged
+    UnityEngine.UI.Scrollbar+ScrollEvent))

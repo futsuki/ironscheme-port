@@ -1,0 +1,11 @@
+(library (mono math prime generator next-prime-finder)
+  (export new is? next-prime-finder?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new Mono.Math.Prime.Generator.NextPrimeFinder a ...)))))
+  (define (is? a) (clr-is Mono.Math.Prime.Generator.NextPrimeFinder a))
+  (define (next-prime-finder? a)
+    (clr-is Mono.Math.Prime.Generator.NextPrimeFinder a)))

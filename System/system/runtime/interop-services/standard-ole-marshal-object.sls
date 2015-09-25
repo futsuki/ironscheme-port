@@ -1,0 +1,7 @@
+(library (system runtime interop-services standard-ole-marshal-object)
+  (export is? standard-ole-marshal-object?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.InteropServices.StandardOleMarshalObject a))
+  (define (standard-ole-marshal-object? a)
+    (clr-is System.Runtime.InteropServices.StandardOleMarshalObject a)))

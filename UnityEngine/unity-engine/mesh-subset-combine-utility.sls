@@ -1,0 +1,11 @@
+(library (unity-engine mesh-subset-combine-utility)
+  (export new is? mesh-subset-combine-utility?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.MeshSubsetCombineUtility a ...)))))
+  (define (is? a) (clr-is UnityEngine.MeshSubsetCombineUtility a))
+  (define (mesh-subset-combine-utility? a)
+    (clr-is UnityEngine.MeshSubsetCombineUtility a)))

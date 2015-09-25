@@ -1,0 +1,11 @@
+(library (system code-dom code-type-constructor)
+  (export new is? code-type-constructor?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.CodeDom.CodeTypeConstructor a ...)))))
+  (define (is? a) (clr-is System.CodeDom.CodeTypeConstructor a))
+  (define (code-type-constructor? a)
+    (clr-is System.CodeDom.CodeTypeConstructor a)))

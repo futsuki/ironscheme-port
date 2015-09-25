@@ -1,0 +1,10 @@
+(library (system http-style-uri-parser)
+  (export new is? http-style-uri-parser?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.HttpStyleUriParser a ...)))))
+  (define (is? a) (clr-is System.HttpStyleUriParser a))
+  (define (http-style-uri-parser? a)
+    (clr-is System.HttpStyleUriParser a)))

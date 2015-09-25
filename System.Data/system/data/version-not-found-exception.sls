@@ -1,0 +1,11 @@
+(library (system data version-not-found-exception)
+  (export new is? version-not-found-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.VersionNotFoundException a ...)))))
+  (define (is? a) (clr-is System.Data.VersionNotFoundException a))
+  (define (version-not-found-exception? a)
+    (clr-is System.Data.VersionNotFoundException a)))

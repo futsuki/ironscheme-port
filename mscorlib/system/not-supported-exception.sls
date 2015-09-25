@@ -1,0 +1,10 @@
+(library (system not-supported-exception)
+  (export new is? not-supported-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.NotSupportedException a ...)))))
+  (define (is? a) (clr-is System.NotSupportedException a))
+  (define (not-supported-exception? a)
+    (clr-is System.NotSupportedException a)))

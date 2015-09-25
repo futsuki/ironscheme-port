@@ -1,0 +1,5 @@
+(library (unity-engine flare-layer)
+  (export is? flare-layer?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.FlareLayer a))
+  (define (flare-layer? a) (clr-is UnityEngine.FlareLayer a)))

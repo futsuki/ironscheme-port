@@ -1,0 +1,11 @@
+(library (unity-engine particle-system-extensions-impl)
+  (export new is? particle-system-extensions-impl?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.ParticleSystemExtensionsImpl a ...)))))
+  (define (is? a) (clr-is UnityEngine.ParticleSystemExtensionsImpl a))
+  (define (particle-system-extensions-impl? a)
+    (clr-is UnityEngine.ParticleSystemExtensionsImpl a)))

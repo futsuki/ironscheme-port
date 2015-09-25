@@ -1,0 +1,10 @@
+(library (unity-engine hide-in-inspector)
+  (export new is? hide-in-inspector?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.HideInInspector a ...)))))
+  (define (is? a) (clr-is UnityEngine.HideInInspector a))
+  (define (hide-in-inspector? a)
+    (clr-is UnityEngine.HideInInspector a)))

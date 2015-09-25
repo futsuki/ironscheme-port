@@ -1,0 +1,123 @@
+(library (unity-engine procedural-property-description)
+  (export new
+          is?
+          procedural-property-description?
+          name-get
+          name-set!
+          name-update!
+          label-get
+          label-set!
+          label-update!
+          group-get
+          group-set!
+          group-update!
+          type-get
+          type-set!
+          type-update!
+          has-range?-get
+          has-range?-set!
+          has-range?-update!
+          minimum-get
+          minimum-set!
+          minimum-update!
+          maximum-get
+          maximum-set!
+          maximum-update!
+          step-get
+          step-set!
+          step-update!
+          enum-options-get
+          enum-options-set!
+          enum-options-update!
+          component-labels-get
+          component-labels-set!
+          component-labels-update!)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.ProceduralPropertyDescription a ...)))))
+  (define (is? a) (clr-is UnityEngine.ProceduralPropertyDescription a))
+  (define (procedural-property-description? a)
+    (clr-is UnityEngine.ProceduralPropertyDescription a))
+  (define-field-port
+    name-get
+    name-set!
+    name-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    name
+    System.String)
+  (define-field-port
+    label-get
+    label-set!
+    label-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    label
+    System.String)
+  (define-field-port
+    group-get
+    group-set!
+    group-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    group
+    System.String)
+  (define-field-port
+    type-get
+    type-set!
+    type-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    type
+    UnityEngine.ProceduralPropertyType)
+  (define-field-port
+    has-range?-get
+    has-range?-set!
+    has-range?-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    hasRange
+    System.Boolean)
+  (define-field-port
+    minimum-get
+    minimum-set!
+    minimum-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    minimum
+    System.Single)
+  (define-field-port
+    maximum-get
+    maximum-set!
+    maximum-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    maximum
+    System.Single)
+  (define-field-port
+    step-get
+    step-set!
+    step-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    step
+    System.Single)
+  (define-field-port
+    enum-options-get
+    enum-options-set!
+    enum-options-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    enumOptions
+    System.String[])
+  (define-field-port
+    component-labels-get
+    component-labels-set!
+    component-labels-update!
+    ()
+    UnityEngine.ProceduralPropertyDescription
+    componentLabels
+    System.String[]))

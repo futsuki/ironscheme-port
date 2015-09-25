@@ -1,0 +1,10 @@
+(library (system invalid-program-exception)
+  (export new is? invalid-program-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.InvalidProgramException a ...)))))
+  (define (is? a) (clr-is System.InvalidProgramException a))
+  (define (invalid-program-exception? a)
+    (clr-is System.InvalidProgramException a)))

@@ -1,0 +1,11 @@
+(library (system invalid-operation-exception)
+  (export new is? invalid-operation-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.InvalidOperationException a ...)))))
+  (define (is? a) (clr-is System.InvalidOperationException a))
+  (define (invalid-operation-exception? a)
+    (clr-is System.InvalidOperationException a)))

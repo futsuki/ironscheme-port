@@ -1,0 +1,11 @@
+(library (system xml schema xml-schema-length-facet)
+  (export new is? xml-schema-length-facet?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Xml.Schema.XmlSchemaLengthFacet a ...)))))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaLengthFacet a))
+  (define (xml-schema-length-facet? a)
+    (clr-is System.Xml.Schema.XmlSchemaLengthFacet a)))

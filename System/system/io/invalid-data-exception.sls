@@ -1,0 +1,10 @@
+(library (system io invalid-data-exception)
+  (export new is? invalid-data-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.IO.InvalidDataException a ...)))))
+  (define (is? a) (clr-is System.IO.InvalidDataException a))
+  (define (invalid-data-exception? a)
+    (clr-is System.IO.InvalidDataException a)))

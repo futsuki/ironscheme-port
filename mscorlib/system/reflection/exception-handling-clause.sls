@@ -1,0 +1,76 @@
+(library (system reflection exception-handling-clause)
+  (export is?
+          exception-handling-clause?
+          to-string
+          catch-type
+          filter-offset
+          flags
+          handler-length
+          handler-offset
+          try-length
+          try-offset)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Reflection.ExceptionHandlingClause a))
+  (define (exception-handling-clause? a)
+    (clr-is System.Reflection.ExceptionHandlingClause a))
+  (define-method-port
+    to-string
+    System.Reflection.ExceptionHandlingClause
+    ToString
+    (System.String))
+  (define-field-port
+    catch-type
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    CatchType
+    System.Type)
+  (define-field-port
+    filter-offset
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    FilterOffset
+    System.Int32)
+  (define-field-port
+    flags
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    Flags
+    System.Reflection.ExceptionHandlingClauseOptions)
+  (define-field-port
+    handler-length
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    HandlerLength
+    System.Int32)
+  (define-field-port
+    handler-offset
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    HandlerOffset
+    System.Int32)
+  (define-field-port
+    try-length
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    TryLength
+    System.Int32)
+  (define-field-port
+    try-offset
+    #f
+    #f
+    (property:)
+    System.Reflection.ExceptionHandlingClause
+    TryOffset
+    System.Int32))

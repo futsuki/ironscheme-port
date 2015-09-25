@@ -1,0 +1,11 @@
+(library (system mono-internal-note-attribute)
+  (export new is? mono-internal-note-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.MonoInternalNoteAttribute a ...)))))
+  (define (is? a) (clr-is System.MonoInternalNoteAttribute a))
+  (define (mono-internal-note-attribute? a)
+    (clr-is System.MonoInternalNoteAttribute a)))

@@ -1,0 +1,10 @@
+(library (system code-dom code-expression)
+  (export new is? code-expression?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.CodeDom.CodeExpression a ...)))))
+  (define (is? a) (clr-is System.CodeDom.CodeExpression a))
+  (define (code-expression? a)
+    (clr-is System.CodeDom.CodeExpression a)))

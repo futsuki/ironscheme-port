@@ -1,0 +1,11 @@
+(library (system linq queryable-transformer)
+  (export new is? queryable-transformer?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Linq.QueryableTransformer a ...)))))
+  (define (is? a) (clr-is System.Linq.QueryableTransformer a))
+  (define (queryable-transformer? a)
+    (clr-is System.Linq.QueryableTransformer a)))

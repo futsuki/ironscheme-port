@@ -1,0 +1,10 @@
+(library (system xml schema xml-schema-key)
+  (export new is? xml-schema-key?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Xml.Schema.XmlSchemaKey a ...)))))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaKey a))
+  (define (xml-schema-key? a)
+    (clr-is System.Xml.Schema.XmlSchemaKey a)))

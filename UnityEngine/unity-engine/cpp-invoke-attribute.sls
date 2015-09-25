@@ -1,0 +1,10 @@
+(library (unity-engine cpp-invoke-attribute)
+  (export new is? cpp-invoke-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.CppInvokeAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.CppInvokeAttribute a))
+  (define (cpp-invoke-attribute? a)
+    (clr-is UnityEngine.CppInvokeAttribute a)))

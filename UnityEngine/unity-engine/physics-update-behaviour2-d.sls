@@ -1,0 +1,11 @@
+(library (unity-engine physics-update-behaviour2-d)
+  (export new is? physics-update-behaviour2-d?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.PhysicsUpdateBehaviour2D a ...)))))
+  (define (is? a) (clr-is UnityEngine.PhysicsUpdateBehaviour2D a))
+  (define (physics-update-behaviour2-d? a)
+    (clr-is UnityEngine.PhysicsUpdateBehaviour2D a)))

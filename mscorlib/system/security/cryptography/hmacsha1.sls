@@ -1,0 +1,11 @@
+(library (system security cryptography hmacsha1)
+  (export new is? hmacsha1?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Security.Cryptography.HMACSHA1 a ...)))))
+  (define (is? a) (clr-is System.Security.Cryptography.HMACSHA1 a))
+  (define (hmacsha1? a)
+    (clr-is System.Security.Cryptography.HMACSHA1 a)))

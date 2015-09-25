@@ -1,0 +1,10 @@
+(library (unity-engine android-java-class)
+  (export new is? android-java-class?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.AndroidJavaClass a ...)))))
+  (define (is? a) (clr-is UnityEngine.AndroidJavaClass a))
+  (define (android-java-class? a)
+    (clr-is UnityEngine.AndroidJavaClass a)))

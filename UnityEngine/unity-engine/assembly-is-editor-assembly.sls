@@ -1,0 +1,11 @@
+(library (unity-engine assembly-is-editor-assembly)
+  (export new is? assembly-is-editor-assembly?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.AssemblyIsEditorAssembly a ...)))))
+  (define (is? a) (clr-is UnityEngine.AssemblyIsEditorAssembly a))
+  (define (assembly-is-editor-assembly? a)
+    (clr-is UnityEngine.AssemblyIsEditorAssembly a)))

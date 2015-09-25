@@ -1,0 +1,111 @@
+(library (unity-engine particle-animator)
+  (export new
+          is?
+          particle-animator?
+          does-animate-color?-get
+          does-animate-color?-set!
+          does-animate-color?-update!
+          world-rotation-axis-get
+          world-rotation-axis-set!
+          world-rotation-axis-update!
+          local-rotation-axis-get
+          local-rotation-axis-set!
+          local-rotation-axis-update!
+          size-grow-get
+          size-grow-set!
+          size-grow-update!
+          rnd-force-get
+          rnd-force-set!
+          rnd-force-update!
+          force-get
+          force-set!
+          force-update!
+          damping-get
+          damping-set!
+          damping-update!
+          autodestruct?-get
+          autodestruct?-set!
+          autodestruct?-update!
+          color-animation-get
+          color-animation-set!
+          color-animation-update!)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.ParticleAnimator a ...)))))
+  (define (is? a) (clr-is UnityEngine.ParticleAnimator a))
+  (define (particle-animator? a)
+    (clr-is UnityEngine.ParticleAnimator a))
+  (define-field-port
+    does-animate-color?-get
+    does-animate-color?-set!
+    does-animate-color?-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    doesAnimateColor
+    System.Boolean)
+  (define-field-port
+    world-rotation-axis-get
+    world-rotation-axis-set!
+    world-rotation-axis-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    worldRotationAxis
+    UnityEngine.Vector3)
+  (define-field-port
+    local-rotation-axis-get
+    local-rotation-axis-set!
+    local-rotation-axis-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    localRotationAxis
+    UnityEngine.Vector3)
+  (define-field-port
+    size-grow-get
+    size-grow-set!
+    size-grow-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    sizeGrow
+    System.Single)
+  (define-field-port
+    rnd-force-get
+    rnd-force-set!
+    rnd-force-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    rndForce
+    UnityEngine.Vector3)
+  (define-field-port
+    force-get
+    force-set!
+    force-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    force
+    UnityEngine.Vector3)
+  (define-field-port
+    damping-get
+    damping-set!
+    damping-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    damping
+    System.Single)
+  (define-field-port
+    autodestruct?-get
+    autodestruct?-set!
+    autodestruct?-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    autodestruct
+    System.Boolean)
+  (define-field-port
+    color-animation-get
+    color-animation-set!
+    color-animation-update!
+    (property:)
+    UnityEngine.ParticleAnimator
+    colorAnimation
+    UnityEngine.Color[]))

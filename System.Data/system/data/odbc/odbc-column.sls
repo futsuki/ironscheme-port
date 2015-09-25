@@ -1,0 +1,5 @@
+(library (system data odbc odbc-column)
+  (export is? odbc-column?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.Odbc.OdbcColumn a))
+  (define (odbc-column? a) (clr-is System.Data.Odbc.OdbcColumn a)))

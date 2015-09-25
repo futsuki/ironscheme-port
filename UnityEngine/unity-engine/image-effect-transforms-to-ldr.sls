@@ -1,0 +1,11 @@
+(library (unity-engine image-effect-transforms-to-ldr)
+  (export new is? image-effect-transforms-to-ldr?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.ImageEffectTransformsToLDR a ...)))))
+  (define (is? a) (clr-is UnityEngine.ImageEffectTransformsToLDR a))
+  (define (image-effect-transforms-to-ldr? a)
+    (clr-is UnityEngine.ImageEffectTransformsToLDR a)))

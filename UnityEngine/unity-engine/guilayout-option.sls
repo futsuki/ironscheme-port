@@ -1,0 +1,5 @@
+(library (unity-engine guilayout-option)
+  (export is? guilayout-option?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.GUILayoutOption a))
+  (define (guilayout-option? a) (clr-is UnityEngine.GUILayoutOption a)))

@@ -1,0 +1,7 @@
+(library (system runtime remoting channels cross-app-domain-data)
+  (export is? cross-app-domain-data?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.Remoting.Channels.CrossAppDomainData a))
+  (define (cross-app-domain-data? a)
+    (clr-is System.Runtime.Remoting.Channels.CrossAppDomainData a)))

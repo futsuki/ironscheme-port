@@ -1,0 +1,11 @@
+(library (system data common decimal-data-container)
+  (export new is? decimal-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.DecimalDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.DecimalDataContainer a))
+  (define (decimal-data-container? a)
+    (clr-is System.Data.Common.DecimalDataContainer a)))

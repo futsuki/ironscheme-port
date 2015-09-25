@@ -1,0 +1,10 @@
+(library (system invalid-time-zone-exception)
+  (export new is? invalid-time-zone-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.InvalidTimeZoneException a ...)))))
+  (define (is? a) (clr-is System.InvalidTimeZoneException a))
+  (define (invalid-time-zone-exception? a)
+    (clr-is System.InvalidTimeZoneException a)))

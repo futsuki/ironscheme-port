@@ -1,0 +1,11 @@
+(library (system xml schema xml-schema-unique)
+  (export new is? xml-schema-unique?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Xml.Schema.XmlSchemaUnique a ...)))))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaUnique a))
+  (define (xml-schema-unique? a)
+    (clr-is System.Xml.Schema.XmlSchemaUnique a)))

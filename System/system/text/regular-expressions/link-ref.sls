@@ -1,0 +1,6 @@
+(library (system text regular-expressions link-ref)
+  (export is? link-ref?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Text.RegularExpressions.LinkRef a))
+  (define (link-ref? a)
+    (clr-is System.Text.RegularExpressions.LinkRef a)))

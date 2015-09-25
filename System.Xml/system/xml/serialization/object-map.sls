@@ -1,0 +1,11 @@
+(library (system xml serialization object-map)
+  (export new is? object-map?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Xml.Serialization.ObjectMap a ...)))))
+  (define (is? a) (clr-is System.Xml.Serialization.ObjectMap a))
+  (define (object-map? a)
+    (clr-is System.Xml.Serialization.ObjectMap a)))

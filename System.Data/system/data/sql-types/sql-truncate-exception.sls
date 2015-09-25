@@ -1,0 +1,11 @@
+(library (system data sql-types sql-truncate-exception)
+  (export new is? sql-truncate-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.SqlTypes.SqlTruncateException a ...)))))
+  (define (is? a) (clr-is System.Data.SqlTypes.SqlTruncateException a))
+  (define (sql-truncate-exception? a)
+    (clr-is System.Data.SqlTypes.SqlTruncateException a)))

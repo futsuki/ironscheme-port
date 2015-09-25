@@ -1,0 +1,11 @@
+(library (system data common byte-data-container)
+  (export new is? byte-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.ByteDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.ByteDataContainer a))
+  (define (byte-data-container? a)
+    (clr-is System.Data.Common.ByteDataContainer a)))

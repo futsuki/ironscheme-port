@@ -1,0 +1,11 @@
+(library (microsoft visual-basic vbcode-generator)
+  (export new is? vbcode-generator?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new Microsoft.VisualBasic.VBCodeGenerator a ...)))))
+  (define (is? a) (clr-is Microsoft.VisualBasic.VBCodeGenerator a))
+  (define (vbcode-generator? a)
+    (clr-is Microsoft.VisualBasic.VBCodeGenerator a)))

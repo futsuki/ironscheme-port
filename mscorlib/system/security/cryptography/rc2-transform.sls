@@ -1,0 +1,11 @@
+(library (system security cryptography rc2-transform)
+  (export new is? rc2-transform?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Security.Cryptography.RC2Transform a ...)))))
+  (define (is? a) (clr-is System.Security.Cryptography.RC2Transform a))
+  (define (rc2-transform? a)
+    (clr-is System.Security.Cryptography.RC2Transform a)))

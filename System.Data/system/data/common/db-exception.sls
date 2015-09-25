@@ -1,0 +1,5 @@
+(library (system data common db-exception)
+  (export is? db-exception?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.Common.DbException a))
+  (define (db-exception? a) (clr-is System.Data.Common.DbException a)))

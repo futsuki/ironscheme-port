@@ -1,0 +1,11 @@
+(library (system security xml-syntax-exception)
+  (export new is? xml-syntax-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Security.XmlSyntaxException a ...)))))
+  (define (is? a) (clr-is System.Security.XmlSyntaxException a))
+  (define (xml-syntax-exception? a)
+    (clr-is System.Security.XmlSyntaxException a)))

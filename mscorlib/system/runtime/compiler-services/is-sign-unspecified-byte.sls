@@ -1,0 +1,7 @@
+(library (system runtime compiler-services is-sign-unspecified-byte)
+  (export is? is-sign-unspecified-byte?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.CompilerServices.IsSignUnspecifiedByte a))
+  (define (is-sign-unspecified-byte? a)
+    (clr-is System.Runtime.CompilerServices.IsSignUnspecifiedByte a)))

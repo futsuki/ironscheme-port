@@ -1,0 +1,10 @@
+(library (unity-engine cpp-body-attribute)
+  (export new is? cpp-body-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.CppBodyAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.CppBodyAttribute a))
+  (define (cpp-body-attribute? a)
+    (clr-is UnityEngine.CppBodyAttribute a)))

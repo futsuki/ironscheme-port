@@ -1,0 +1,10 @@
+(library (unity-engine send-mouse-events)
+  (export new is? send-mouse-events?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.SendMouseEvents a ...)))))
+  (define (is? a) (clr-is UnityEngine.SendMouseEvents a))
+  (define (send-mouse-events? a)
+    (clr-is UnityEngine.SendMouseEvents a)))

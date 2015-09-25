@@ -1,0 +1,10 @@
+(library (system security cryptography hmacmd5)
+  (export new is? hmacmd5?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Security.Cryptography.HMACMD5 a ...)))))
+  (define (is? a) (clr-is System.Security.Cryptography.HMACMD5 a))
+  (define (hmacmd5? a) (clr-is System.Security.Cryptography.HMACMD5 a)))

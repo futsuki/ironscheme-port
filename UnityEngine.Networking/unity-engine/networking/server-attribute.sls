@@ -1,0 +1,11 @@
+(library (unity-engine networking server-attribute)
+  (export new is? server-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.Networking.ServerAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.Networking.ServerAttribute a))
+  (define (server-attribute? a)
+    (clr-is UnityEngine.Networking.ServerAttribute a)))

@@ -1,0 +1,11 @@
+(library (system unauthorized-access-exception)
+  (export new is? unauthorized-access-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.UnauthorizedAccessException a ...)))))
+  (define (is? a) (clr-is System.UnauthorizedAccessException a))
+  (define (unauthorized-access-exception? a)
+    (clr-is System.UnauthorizedAccessException a)))

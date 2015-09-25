@@ -1,0 +1,7 @@
+(library (system xml serialization xml-serialization-writer)
+  (export is? xml-serialization-writer?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Xml.Serialization.XmlSerializationWriter a))
+  (define (xml-serialization-writer? a)
+    (clr-is System.Xml.Serialization.XmlSerializationWriter a)))

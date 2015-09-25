@@ -1,0 +1,10 @@
+(library (system data constraint-exception)
+  (export new is? constraint-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Data.ConstraintException a ...)))))
+  (define (is? a) (clr-is System.Data.ConstraintException a))
+  (define (constraint-exception? a)
+    (clr-is System.Data.ConstraintException a)))

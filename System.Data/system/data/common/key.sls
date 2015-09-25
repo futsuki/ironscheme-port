@@ -1,0 +1,5 @@
+(library (system data common key)
+  (export is? key?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.Common.Key a))
+  (define (key? a) (clr-is System.Data.Common.Key a)))

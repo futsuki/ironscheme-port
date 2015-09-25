@@ -1,0 +1,10 @@
+(library (system thread-static-attribute)
+  (export new is? thread-static-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.ThreadStaticAttribute a ...)))))
+  (define (is? a) (clr-is System.ThreadStaticAttribute a))
+  (define (thread-static-attribute? a)
+    (clr-is System.ThreadStaticAttribute a)))

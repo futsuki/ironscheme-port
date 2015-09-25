@@ -1,0 +1,11 @@
+(library (unity-engine constructor-safe-attribute)
+  (export new is? constructor-safe-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.ConstructorSafeAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.ConstructorSafeAttribute a))
+  (define (constructor-safe-attribute? a)
+    (clr-is UnityEngine.ConstructorSafeAttribute a)))

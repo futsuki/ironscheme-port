@@ -1,0 +1,10 @@
+(library (system ftp-style-uri-parser)
+  (export new is? ftp-style-uri-parser?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.FtpStyleUriParser a ...)))))
+  (define (is? a) (clr-is System.FtpStyleUriParser a))
+  (define (ftp-style-uri-parser? a)
+    (clr-is System.FtpStyleUriParser a)))

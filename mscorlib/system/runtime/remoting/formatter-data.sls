@@ -1,0 +1,11 @@
+(library (system runtime remoting formatter-data)
+  (export new is? formatter-data?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Runtime.Remoting.FormatterData a ...)))))
+  (define (is? a) (clr-is System.Runtime.Remoting.FormatterData a))
+  (define (formatter-data? a)
+    (clr-is System.Runtime.Remoting.FormatterData a)))

@@ -1,0 +1,6 @@
+(library (unity-engine mesh-particle-emitter)
+  (export is? mesh-particle-emitter?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.MeshParticleEmitter a))
+  (define (mesh-particle-emitter? a)
+    (clr-is UnityEngine.MeshParticleEmitter a)))

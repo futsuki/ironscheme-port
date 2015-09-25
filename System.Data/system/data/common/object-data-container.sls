@@ -1,0 +1,11 @@
+(library (system data common object-data-container)
+  (export new is? object-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.ObjectDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.ObjectDataContainer a))
+  (define (object-data-container? a)
+    (clr-is System.Data.Common.ObjectDataContainer a)))

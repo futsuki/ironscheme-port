@@ -1,0 +1,7 @@
+(library (system security permissions code-access-security-attribute)
+  (export is? code-access-security-attribute?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Security.Permissions.CodeAccessSecurityAttribute a))
+  (define (code-access-security-attribute? a)
+    (clr-is System.Security.Permissions.CodeAccessSecurityAttribute a)))

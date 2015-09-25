@@ -1,0 +1,10 @@
+(library (system serializable-attribute)
+  (export new is? serializable-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.SerializableAttribute a ...)))))
+  (define (is? a) (clr-is System.SerializableAttribute a))
+  (define (serializable-attribute? a)
+    (clr-is System.SerializableAttribute a)))

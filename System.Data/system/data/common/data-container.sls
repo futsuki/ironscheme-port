@@ -1,0 +1,6 @@
+(library (system data common data-container)
+  (export is? data-container?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.Common.DataContainer a))
+  (define (data-container? a)
+    (clr-is System.Data.Common.DataContainer a)))

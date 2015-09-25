@@ -1,0 +1,11 @@
+(library (mono xml xpath yy-parser yy-unexpected-eof)
+  (export new is? yy-unexpected-eof?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new Mono.Xml.XPath.yyParser.yyUnexpectedEof a ...)))))
+  (define (is? a) (clr-is Mono.Xml.XPath.yyParser.yyUnexpectedEof a))
+  (define (yy-unexpected-eof? a)
+    (clr-is Mono.Xml.XPath.yyParser.yyUnexpectedEof a)))

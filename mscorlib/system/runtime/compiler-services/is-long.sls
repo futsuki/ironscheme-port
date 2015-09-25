@@ -1,0 +1,6 @@
+(library (system runtime compiler-services is-long)
+  (export is? is-long?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Runtime.CompilerServices.IsLong a))
+  (define (is-long? a)
+    (clr-is System.Runtime.CompilerServices.IsLong a)))

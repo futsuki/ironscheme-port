@@ -1,0 +1,7 @@
+(library (system runtime remoting messaging cadmethod-call-message)
+  (export is? cadmethod-call-message?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.Remoting.Messaging.CADMethodCallMessage a))
+  (define (cadmethod-call-message? a)
+    (clr-is System.Runtime.Remoting.Messaging.CADMethodCallMessage a)))

@@ -1,0 +1,11 @@
+(library (system threading lock-recursion-exception)
+  (export new is? lock-recursion-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Threading.LockRecursionException a ...)))))
+  (define (is? a) (clr-is System.Threading.LockRecursionException a))
+  (define (lock-recursion-exception? a)
+    (clr-is System.Threading.LockRecursionException a)))

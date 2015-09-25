@@ -1,0 +1,11 @@
+(library (system code-dom code-entry-point-method)
+  (export new is? code-entry-point-method?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.CodeDom.CodeEntryPointMethod a ...)))))
+  (define (is? a) (clr-is System.CodeDom.CodeEntryPointMethod a))
+  (define (code-entry-point-method? a)
+    (clr-is System.CodeDom.CodeEntryPointMethod a)))

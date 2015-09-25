@@ -1,0 +1,10 @@
+(library (unity-engine writable-attribute)
+  (export new is? writable-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.WritableAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.WritableAttribute a))
+  (define (writable-attribute? a)
+    (clr-is UnityEngine.WritableAttribute a)))

@@ -1,0 +1,11 @@
+(library (unity-engine missing-reference-exception)
+  (export new is? missing-reference-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.MissingReferenceException a ...)))))
+  (define (is? a) (clr-is UnityEngine.MissingReferenceException a))
+  (define (missing-reference-exception? a)
+    (clr-is UnityEngine.MissingReferenceException a)))

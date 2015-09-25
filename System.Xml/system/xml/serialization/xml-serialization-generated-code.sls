@@ -1,0 +1,7 @@
+(library (system xml serialization xml-serialization-generated-code)
+  (export is? xml-serialization-generated-code?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Xml.Serialization.XmlSerializationGeneratedCode a))
+  (define (xml-serialization-generated-code? a)
+    (clr-is System.Xml.Serialization.XmlSerializationGeneratedCode a)))

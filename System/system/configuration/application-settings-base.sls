@@ -1,0 +1,96 @@
+(library (system configuration application-settings-base)
+  (export is?
+          application-settings-base?
+          get-previous-version
+          save
+          reload
+          reset
+          upgrade
+          context
+          item-get
+          item-set!
+          item-update!
+          properties
+          property-values
+          providers
+          settings-key-get
+          settings-key-set!
+          settings-key-update!)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Configuration.ApplicationSettingsBase a))
+  (define (application-settings-base? a)
+    (clr-is System.Configuration.ApplicationSettingsBase a))
+  (define-method-port
+    get-previous-version
+    System.Configuration.ApplicationSettingsBase
+    GetPreviousVersion
+    (System.Object System.String))
+  (define-method-port
+    save
+    System.Configuration.ApplicationSettingsBase
+    Save
+    (System.Void))
+  (define-method-port
+    reload
+    System.Configuration.ApplicationSettingsBase
+    Reload
+    (System.Void))
+  (define-method-port
+    reset
+    System.Configuration.ApplicationSettingsBase
+    Reset
+    (System.Void))
+  (define-method-port
+    upgrade
+    System.Configuration.ApplicationSettingsBase
+    Upgrade
+    (System.Void))
+  (define-field-port
+    context
+    #f
+    #f
+    (property:)
+    System.Configuration.ApplicationSettingsBase
+    Context
+    System.Configuration.SettingsContext)
+  (define-field-port
+    item-get
+    item-set!
+    item-update!
+    (property:)
+    System.Configuration.ApplicationSettingsBase
+    Item
+    System.Object)
+  (define-field-port
+    properties
+    #f
+    #f
+    (property:)
+    System.Configuration.ApplicationSettingsBase
+    Properties
+    System.Configuration.SettingsPropertyCollection)
+  (define-field-port
+    property-values
+    #f
+    #f
+    (property:)
+    System.Configuration.ApplicationSettingsBase
+    PropertyValues
+    System.Configuration.SettingsPropertyValueCollection)
+  (define-field-port
+    providers
+    #f
+    #f
+    (property:)
+    System.Configuration.ApplicationSettingsBase
+    Providers
+    System.Configuration.SettingsProviderCollection)
+  (define-field-port
+    settings-key-get
+    settings-key-set!
+    settings-key-update!
+    (property:)
+    System.Configuration.ApplicationSettingsBase
+    SettingsKey
+    System.String))

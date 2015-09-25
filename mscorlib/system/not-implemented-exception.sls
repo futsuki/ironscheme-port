@@ -1,0 +1,10 @@
+(library (system not-implemented-exception)
+  (export new is? not-implemented-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.NotImplementedException a ...)))))
+  (define (is? a) (clr-is System.NotImplementedException a))
+  (define (not-implemented-exception? a)
+    (clr-is System.NotImplementedException a)))

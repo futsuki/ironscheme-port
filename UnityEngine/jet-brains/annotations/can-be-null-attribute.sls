@@ -1,0 +1,11 @@
+(library (jet-brains annotations can-be-null-attribute)
+  (export new is? can-be-null-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new JetBrains.Annotations.CanBeNullAttribute a ...)))))
+  (define (is? a) (clr-is JetBrains.Annotations.CanBeNullAttribute a))
+  (define (can-be-null-attribute? a)
+    (clr-is JetBrains.Annotations.CanBeNullAttribute a)))

@@ -1,0 +1,11 @@
+(library (system component-model byte-converter)
+  (export new is? byte-converter?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.ComponentModel.ByteConverter a ...)))))
+  (define (is? a) (clr-is System.ComponentModel.ByteConverter a))
+  (define (byte-converter? a)
+    (clr-is System.ComponentModel.ByteConverter a)))

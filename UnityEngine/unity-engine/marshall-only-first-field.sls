@@ -1,0 +1,11 @@
+(library (unity-engine marshall-only-first-field)
+  (export new is? marshall-only-first-field?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.MarshallOnlyFirstField a ...)))))
+  (define (is? a) (clr-is UnityEngine.MarshallOnlyFirstField a))
+  (define (marshall-only-first-field? a)
+    (clr-is UnityEngine.MarshallOnlyFirstField a)))

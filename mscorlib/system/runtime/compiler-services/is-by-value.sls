@@ -1,0 +1,6 @@
+(library (system runtime compiler-services is-by-value)
+  (export is? is-by-value?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Runtime.CompilerServices.IsByValue a))
+  (define (is-by-value? a)
+    (clr-is System.Runtime.CompilerServices.IsByValue a)))

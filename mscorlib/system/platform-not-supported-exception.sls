@@ -1,0 +1,11 @@
+(library (system platform-not-supported-exception)
+  (export new is? platform-not-supported-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.PlatformNotSupportedException a ...)))))
+  (define (is? a) (clr-is System.PlatformNotSupportedException a))
+  (define (platform-not-supported-exception? a)
+    (clr-is System.PlatformNotSupportedException a)))

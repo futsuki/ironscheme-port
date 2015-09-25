@@ -1,0 +1,121 @@
+(library (system io file-system-watcher)
+  (export new
+          is?
+          file-system-watcher?
+          begin-init
+          end-init
+          wait-for-changed
+          enable-raising-events?-get
+          enable-raising-events?-set!
+          enable-raising-events?-update!
+          filter-get
+          filter-set!
+          filter-update!
+          include-subdirectories?-get
+          include-subdirectories?-set!
+          include-subdirectories?-update!
+          internal-buffer-size-get
+          internal-buffer-size-set!
+          internal-buffer-size-update!
+          notify-filter-get
+          notify-filter-set!
+          notify-filter-update!
+          path-get
+          path-set!
+          path-update!
+          site-get
+          site-set!
+          site-update!
+          synchronizing-object-get
+          synchronizing-object-set!
+          synchronizing-object-update!)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.IO.FileSystemWatcher a ...)))))
+  (define (is? a) (clr-is System.IO.FileSystemWatcher a))
+  (define (file-system-watcher? a)
+    (clr-is System.IO.FileSystemWatcher a))
+  (define-method-port
+    begin-init
+    System.IO.FileSystemWatcher
+    BeginInit
+    (System.Void))
+  (define-method-port
+    end-init
+    System.IO.FileSystemWatcher
+    EndInit
+    (System.Void))
+  (define-method-port
+    wait-for-changed
+    System.IO.FileSystemWatcher
+    WaitForChanged
+    (System.IO.WaitForChangedResult
+      System.IO.WatcherChangeTypes
+      System.Int32)
+    (System.IO.WaitForChangedResult System.IO.WatcherChangeTypes))
+  (define-field-port
+    enable-raising-events?-get
+    enable-raising-events?-set!
+    enable-raising-events?-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    EnableRaisingEvents
+    System.Boolean)
+  (define-field-port
+    filter-get
+    filter-set!
+    filter-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    Filter
+    System.String)
+  (define-field-port
+    include-subdirectories?-get
+    include-subdirectories?-set!
+    include-subdirectories?-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    IncludeSubdirectories
+    System.Boolean)
+  (define-field-port
+    internal-buffer-size-get
+    internal-buffer-size-set!
+    internal-buffer-size-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    InternalBufferSize
+    System.Int32)
+  (define-field-port
+    notify-filter-get
+    notify-filter-set!
+    notify-filter-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    NotifyFilter
+    System.IO.NotifyFilters)
+  (define-field-port
+    path-get
+    path-set!
+    path-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    Path
+    System.String)
+  (define-field-port
+    site-get
+    site-set!
+    site-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    Site
+    System.ComponentModel.ISite)
+  (define-field-port
+    synchronizing-object-get
+    synchronizing-object-set!
+    synchronizing-object-update!
+    (property:)
+    System.IO.FileSystemWatcher
+    SynchronizingObject
+    System.ComponentModel.ISynchronizeInvoke))

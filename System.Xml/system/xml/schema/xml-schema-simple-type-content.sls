@@ -1,0 +1,7 @@
+(library (system xml schema xml-schema-simple-type-content)
+  (export is? xml-schema-simple-type-content?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Xml.Schema.XmlSchemaSimpleTypeContent a))
+  (define (xml-schema-simple-type-content? a)
+    (clr-is System.Xml.Schema.XmlSchemaSimpleTypeContent a)))

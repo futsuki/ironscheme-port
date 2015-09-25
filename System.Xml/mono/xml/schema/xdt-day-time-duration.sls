@@ -1,0 +1,70 @@
+(library (mono xml schema xdt-day-time-duration)
+  (export is?
+          xdt-day-time-duration?
+          parse-value
+          type-code
+          value-type
+          bounded?
+          finite?
+          numeric?
+          ordered)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is Mono.Xml.Schema.XdtDayTimeDuration a))
+  (define (xdt-day-time-duration? a)
+    (clr-is Mono.Xml.Schema.XdtDayTimeDuration a))
+  (define-method-port
+    parse-value
+    Mono.Xml.Schema.XdtDayTimeDuration
+    ParseValue
+    (System.Object
+      System.String
+      System.Xml.XmlNameTable
+      System.Xml.IXmlNamespaceResolver))
+  (define-field-port
+    type-code
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtDayTimeDuration
+    TypeCode
+    System.Xml.Schema.XmlTypeCode)
+  (define-field-port
+    value-type
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtDayTimeDuration
+    ValueType
+    System.Type)
+  (define-field-port
+    bounded?
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtDayTimeDuration
+    Bounded
+    System.Boolean)
+  (define-field-port
+    finite?
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtDayTimeDuration
+    Finite
+    System.Boolean)
+  (define-field-port
+    numeric?
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtDayTimeDuration
+    Numeric
+    System.Boolean)
+  (define-field-port
+    ordered
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XdtDayTimeDuration
+    Ordered
+    Mono.Xml.Schema.XsdOrderedFacet))

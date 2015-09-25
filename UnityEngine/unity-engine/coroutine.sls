@@ -1,0 +1,5 @@
+(library (unity-engine coroutine)
+  (export is? coroutine?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is UnityEngine.Coroutine a))
+  (define (coroutine? a) (clr-is UnityEngine.Coroutine a)))

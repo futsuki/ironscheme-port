@@ -1,0 +1,6 @@
+(library (system text regular-expressions regex-runner)
+  (export is? regex-runner?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Text.RegularExpressions.RegexRunner a))
+  (define (regex-runner? a)
+    (clr-is System.Text.RegularExpressions.RegexRunner a)))

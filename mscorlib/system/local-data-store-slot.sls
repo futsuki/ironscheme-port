@@ -1,0 +1,6 @@
+(library (system local-data-store-slot)
+  (export is? local-data-store-slot?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.LocalDataStoreSlot a))
+  (define (local-data-store-slot? a)
+    (clr-is System.LocalDataStoreSlot a)))

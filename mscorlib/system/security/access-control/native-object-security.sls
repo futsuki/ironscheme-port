@@ -1,0 +1,7 @@
+(library (system security access-control native-object-security)
+  (export is? native-object-security?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Security.AccessControl.NativeObjectSecurity a))
+  (define (native-object-security? a)
+    (clr-is System.Security.AccessControl.NativeObjectSecurity a)))

@@ -1,0 +1,11 @@
+(library (system threading semaphore-full-exception)
+  (export new is? semaphore-full-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Threading.SemaphoreFullException a ...)))))
+  (define (is? a) (clr-is System.Threading.SemaphoreFullException a))
+  (define (semaphore-full-exception? a)
+    (clr-is System.Threading.SemaphoreFullException a)))

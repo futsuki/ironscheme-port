@@ -1,0 +1,6 @@
+(library (system media system-sound)
+  (export is? system-sound? play)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Media.SystemSound a))
+  (define (system-sound? a) (clr-is System.Media.SystemSound a))
+  (define-method-port play System.Media.SystemSound Play (System.Void)))

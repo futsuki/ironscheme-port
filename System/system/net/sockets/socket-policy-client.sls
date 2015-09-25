@@ -1,0 +1,6 @@
+(library (system net sockets socket-policy-client)
+  (export is? socket-policy-client?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Net.Sockets.SocketPolicyClient a))
+  (define (socket-policy-client? a)
+    (clr-is System.Net.Sockets.SocketPolicyClient a)))

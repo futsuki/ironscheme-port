@@ -1,0 +1,214 @@
+(library (system xml schema xml-schema-util)
+  (export new
+          is?
+          xml-schema-util?
+          read-qname-attribute
+          to-qname
+          get-parser-context
+          add-to-table
+          check-any-uri?
+          read-unhandled-attribute
+          read-decimal-attribute
+          is-built-in-datatype-name?
+          check-qname?
+          read-use-attribute
+          read-processing-attribute
+          check-normalized-string?
+          compile-id
+          read-derivation-attribute
+          read-form-attribute
+          validate-attributes-resolved
+          are-schema-datatype-equal?
+          find-attribute-declaration
+          split-list
+          read-bool-attribute?
+          is-valid-qname?
+          check-ncname?
+          read-typed-value)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Xml.Schema.XmlSchemaUtil a ...)))))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaUtil a))
+  (define (xml-schema-util? a)
+    (clr-is System.Xml.Schema.XmlSchemaUtil a))
+  (define-method-port
+    read-qname-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadQNameAttribute
+    (static:
+      System.Xml.XmlQualifiedName
+      System.Xml.XmlReader
+      System.Exception&))
+  (define-method-port
+    to-qname
+    System.Xml.Schema.XmlSchemaUtil
+    ToQName
+    (static:
+      System.Xml.XmlQualifiedName
+      System.Xml.XmlReader
+      System.String
+      System.Exception&))
+  (define-method-port
+    get-parser-context
+    System.Xml.Schema.XmlSchemaUtil
+    GetParserContext
+    (static: System.Xml.XmlParserContext System.Xml.XmlReader))
+  (define-method-port
+    add-to-table
+    System.Xml.Schema.XmlSchemaUtil
+    AddToTable
+    (static:
+      System.Void
+      System.Xml.Schema.XmlSchemaObjectTable
+      System.Xml.Schema.XmlSchemaObject
+      System.Xml.XmlQualifiedName
+      System.Xml.Schema.ValidationEventHandler))
+  (define-method-port
+    check-any-uri?
+    System.Xml.Schema.XmlSchemaUtil
+    CheckAnyUri
+    (static: System.Boolean System.String))
+  (define-method-port
+    read-unhandled-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadUnhandledAttribute
+    (static:
+      System.Void
+      System.Xml.XmlReader
+      System.Xml.Schema.XmlSchemaObject))
+  (define-method-port
+    read-decimal-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadDecimalAttribute
+    (static: System.Decimal System.Xml.XmlReader System.Exception&))
+  (define-method-port
+    is-built-in-datatype-name?
+    System.Xml.Schema.XmlSchemaUtil
+    IsBuiltInDatatypeName
+    (static: System.Boolean System.Xml.XmlQualifiedName))
+  (define-method-port
+    check-qname?
+    System.Xml.Schema.XmlSchemaUtil
+    CheckQName
+    (static: System.Boolean System.Xml.XmlQualifiedName))
+  (define-method-port
+    read-use-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadUseAttribute
+    (static:
+      System.Xml.Schema.XmlSchemaUse
+      System.Xml.XmlReader
+      System.Exception&))
+  (define-method-port
+    read-processing-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadProcessingAttribute
+    (static:
+      System.Xml.Schema.XmlSchemaContentProcessing
+      System.Xml.XmlReader
+      System.Exception&))
+  (define-method-port
+    check-normalized-string?
+    System.Xml.Schema.XmlSchemaUtil
+    CheckNormalizedString
+    (static: System.Boolean System.String))
+  (define-method-port
+    compile-id
+    System.Xml.Schema.XmlSchemaUtil
+    CompileID
+    (static:
+      System.Void
+      System.String
+      System.Xml.Schema.XmlSchemaObject
+      System.Collections.Hashtable
+      System.Xml.Schema.ValidationEventHandler))
+  (define-method-port
+    read-derivation-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadDerivationAttribute
+    (static:
+      System.Xml.Schema.XmlSchemaDerivationMethod
+      System.Xml.XmlReader
+      System.Exception&
+      System.String
+      System.Xml.Schema.XmlSchemaDerivationMethod))
+  (define-method-port
+    read-form-attribute
+    System.Xml.Schema.XmlSchemaUtil
+    ReadFormAttribute
+    (static:
+      System.Xml.Schema.XmlSchemaForm
+      System.Xml.XmlReader
+      System.Exception&))
+  (define-method-port
+    validate-attributes-resolved
+    System.Xml.Schema.XmlSchemaUtil
+    ValidateAttributesResolved
+    (static:
+      System.Int32
+      System.Xml.Schema.XmlSchemaObjectTable
+      System.Xml.Schema.ValidationEventHandler
+      System.Xml.Schema.XmlSchema
+      System.Xml.Schema.XmlSchemaObjectCollection
+      System.Xml.Schema.XmlSchemaAnyAttribute
+      System.Xml.Schema.XmlSchemaAnyAttribute&
+      System.Xml.Schema.XmlSchemaAttributeGroup
+      System.Boolean))
+  (define-method-port
+    are-schema-datatype-equal?
+    System.Xml.Schema.XmlSchemaUtil
+    AreSchemaDatatypeEqual
+    (static:
+      System.Boolean
+      Mono.Xml.Schema.XsdAnySimpleType
+      System.Object
+      Mono.Xml.Schema.XsdAnySimpleType
+      System.Object)
+    (static:
+      System.Boolean
+      System.Xml.Schema.XmlSchemaSimpleType
+      System.Object
+      System.Xml.Schema.XmlSchemaSimpleType
+      System.Object))
+  (define-method-port
+    find-attribute-declaration
+    System.Xml.Schema.XmlSchemaUtil
+    FindAttributeDeclaration
+    (static:
+      System.Xml.Schema.XmlSchemaObject
+      System.String
+      System.Xml.Schema.XmlSchemaSet
+      System.Xml.Schema.XmlSchemaComplexType
+      System.Xml.XmlQualifiedName))
+  (define-method-port
+    split-list
+    System.Xml.Schema.XmlSchemaUtil
+    SplitList
+    (static: System.String[] System.String))
+  (define-method-port
+    read-bool-attribute?
+    System.Xml.Schema.XmlSchemaUtil
+    ReadBoolAttribute
+    (static: System.Boolean System.Xml.XmlReader System.Exception&))
+  (define-method-port
+    is-valid-qname?
+    System.Xml.Schema.XmlSchemaUtil
+    IsValidQName
+    (static: System.Boolean System.String))
+  (define-method-port
+    check-ncname?
+    System.Xml.Schema.XmlSchemaUtil
+    CheckNCName
+    (static: System.Boolean System.String))
+  (define-method-port
+    read-typed-value
+    System.Xml.Schema.XmlSchemaUtil
+    ReadTypedValue
+    (static:
+      System.Object
+      System.Xml.XmlReader
+      System.Object
+      System.Xml.IXmlNamespaceResolver
+      System.Text.StringBuilder)))

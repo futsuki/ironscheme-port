@@ -1,0 +1,5 @@
+(library (system net net-config)
+  (export is? net-config?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Net.NetConfig a))
+  (define (net-config? a) (clr-is System.Net.NetConfig a)))

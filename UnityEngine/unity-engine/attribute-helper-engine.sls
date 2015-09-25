@@ -1,0 +1,11 @@
+(library (unity-engine attribute-helper-engine)
+  (export new is? attribute-helper-engine?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.AttributeHelperEngine a ...)))))
+  (define (is? a) (clr-is UnityEngine.AttributeHelperEngine a))
+  (define (attribute-helper-engine? a)
+    (clr-is UnityEngine.AttributeHelperEngine a)))

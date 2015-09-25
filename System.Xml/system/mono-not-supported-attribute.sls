@@ -1,0 +1,11 @@
+(library (system mono-not-supported-attribute)
+  (export new is? mono-not-supported-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.MonoNotSupportedAttribute a ...)))))
+  (define (is? a) (clr-is System.MonoNotSupportedAttribute a))
+  (define (mono-not-supported-attribute? a)
+    (clr-is System.MonoNotSupportedAttribute a)))

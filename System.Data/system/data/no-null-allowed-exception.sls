@@ -1,0 +1,11 @@
+(library (system data no-null-allowed-exception)
+  (export new is? no-null-allowed-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.NoNullAllowedException a ...)))))
+  (define (is? a) (clr-is System.Data.NoNullAllowedException a))
+  (define (no-null-allowed-exception? a)
+    (clr-is System.Data.NoNullAllowedException a)))

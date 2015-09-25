@@ -1,0 +1,11 @@
+(library (system component-model int32-converter)
+  (export new is? int32-converter?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.ComponentModel.Int32Converter a ...)))))
+  (define (is? a) (clr-is System.ComponentModel.Int32Converter a))
+  (define (int32-converter? a)
+    (clr-is System.ComponentModel.Int32Converter a)))

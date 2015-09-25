@@ -1,0 +1,11 @@
+(library (system io drive-not-found-exception)
+  (export new is? drive-not-found-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.IO.DriveNotFoundException a ...)))))
+  (define (is? a) (clr-is System.IO.DriveNotFoundException a))
+  (define (drive-not-found-exception? a)
+    (clr-is System.IO.DriveNotFoundException a)))

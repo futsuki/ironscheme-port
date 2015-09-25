@@ -1,0 +1,149 @@
+(library (unity-engine web-cam-texture)
+  (export new
+          is?
+          web-cam-texture?
+          mark-non-readable
+          play
+          get-pixels
+          get-pixels32
+          pause
+          stop
+          get-pixel
+          is-playing?
+          device-name-get
+          device-name-set!
+          device-name-update!
+          requested-fps-get
+          requested-fps-set!
+          requested-fps-update!
+          requested-width-get
+          requested-width-set!
+          requested-width-update!
+          requested-height-get
+          requested-height-set!
+          requested-height-update!
+          is-readable?
+          devices
+          video-rotation-angle
+          video-vertically-mirrored?
+          did-update-this-frame?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.WebCamTexture a ...)))))
+  (define (is? a) (clr-is UnityEngine.WebCamTexture a))
+  (define (web-cam-texture? a) (clr-is UnityEngine.WebCamTexture a))
+  (define-method-port
+    mark-non-readable
+    UnityEngine.WebCamTexture
+    MarkNonReadable
+    (System.Void))
+  (define-method-port play UnityEngine.WebCamTexture Play (System.Void))
+  (define-method-port
+    get-pixels
+    UnityEngine.WebCamTexture
+    GetPixels
+    (UnityEngine.Color[]
+      System.Int32
+      System.Int32
+      System.Int32
+      System.Int32)
+    (UnityEngine.Color[]))
+  (define-method-port
+    get-pixels32
+    UnityEngine.WebCamTexture
+    GetPixels32
+    (UnityEngine.Color32[])
+    (UnityEngine.Color32[] UnityEngine.Color32[]))
+  (define-method-port
+    pause
+    UnityEngine.WebCamTexture
+    Pause
+    (System.Void))
+  (define-method-port stop UnityEngine.WebCamTexture Stop (System.Void))
+  (define-method-port
+    get-pixel
+    UnityEngine.WebCamTexture
+    GetPixel
+    (UnityEngine.Color System.Int32 System.Int32))
+  (define-field-port
+    is-playing?
+    #f
+    #f
+    (property:)
+    UnityEngine.WebCamTexture
+    isPlaying
+    System.Boolean)
+  (define-field-port
+    device-name-get
+    device-name-set!
+    device-name-update!
+    (property:)
+    UnityEngine.WebCamTexture
+    deviceName
+    System.String)
+  (define-field-port
+    requested-fps-get
+    requested-fps-set!
+    requested-fps-update!
+    (property:)
+    UnityEngine.WebCamTexture
+    requestedFPS
+    System.Single)
+  (define-field-port
+    requested-width-get
+    requested-width-set!
+    requested-width-update!
+    (property:)
+    UnityEngine.WebCamTexture
+    requestedWidth
+    System.Int32)
+  (define-field-port
+    requested-height-get
+    requested-height-set!
+    requested-height-update!
+    (property:)
+    UnityEngine.WebCamTexture
+    requestedHeight
+    System.Int32)
+  (define-field-port
+    is-readable?
+    #f
+    #f
+    (property:)
+    UnityEngine.WebCamTexture
+    isReadable
+    System.Boolean)
+  (define-field-port
+    devices
+    #f
+    #f
+    (static: property:)
+    UnityEngine.WebCamTexture
+    devices
+    UnityEngine.WebCamDevice[])
+  (define-field-port
+    video-rotation-angle
+    #f
+    #f
+    (property:)
+    UnityEngine.WebCamTexture
+    videoRotationAngle
+    System.Int32)
+  (define-field-port
+    video-vertically-mirrored?
+    #f
+    #f
+    (property:)
+    UnityEngine.WebCamTexture
+    videoVerticallyMirrored
+    System.Boolean)
+  (define-field-port
+    did-update-this-frame?
+    #f
+    #f
+    (property:)
+    UnityEngine.WebCamTexture
+    didUpdateThisFrame
+    System.Boolean))

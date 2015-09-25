@@ -1,0 +1,11 @@
+(library (unity-engine serialize-private-variables)
+  (export new is? serialize-private-variables?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.SerializePrivateVariables a ...)))))
+  (define (is? a) (clr-is UnityEngine.SerializePrivateVariables a))
+  (define (serialize-private-variables? a)
+    (clr-is UnityEngine.SerializePrivateVariables a)))

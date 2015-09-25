@@ -1,0 +1,11 @@
+(library (system security verification-exception)
+  (export new is? verification-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Security.VerificationException a ...)))))
+  (define (is? a) (clr-is System.Security.VerificationException a))
+  (define (verification-exception? a)
+    (clr-is System.Security.VerificationException a)))

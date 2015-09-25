@@ -1,0 +1,11 @@
+(library (system data common date-time-data-container)
+  (export new is? date-time-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.DateTimeDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.DateTimeDataContainer a))
+  (define (date-time-data-container? a)
+    (clr-is System.Data.Common.DateTimeDataContainer a)))

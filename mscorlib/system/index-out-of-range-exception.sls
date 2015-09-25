@@ -1,0 +1,10 @@
+(library (system index-out-of-range-exception)
+  (export new is? index-out-of-range-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.IndexOutOfRangeException a ...)))))
+  (define (is? a) (clr-is System.IndexOutOfRangeException a))
+  (define (index-out-of-range-exception? a)
+    (clr-is System.IndexOutOfRangeException a)))

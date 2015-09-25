@@ -1,0 +1,7 @@
+(library (system runtime compiler-services is-copy-constructed)
+  (export is? is-copy-constructed?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.CompilerServices.IsCopyConstructed a))
+  (define (is-copy-constructed? a)
+    (clr-is System.Runtime.CompilerServices.IsCopyConstructed a)))

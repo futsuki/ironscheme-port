@@ -1,0 +1,11 @@
+(library (system runtime remoting server-exception)
+  (export new is? server-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Runtime.Remoting.ServerException a ...)))))
+  (define (is? a) (clr-is System.Runtime.Remoting.ServerException a))
+  (define (server-exception? a)
+    (clr-is System.Runtime.Remoting.ServerException a)))

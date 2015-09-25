@@ -1,0 +1,6 @@
+(library (system linq expressions expression-visitor)
+  (export is? expression-visitor?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Linq.Expressions.ExpressionVisitor a))
+  (define (expression-visitor? a)
+    (clr-is System.Linq.Expressions.ExpressionVisitor a)))

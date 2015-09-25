@@ -1,0 +1,10 @@
+(library (system io path-too-long-exception)
+  (export new is? path-too-long-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.IO.PathTooLongException a ...)))))
+  (define (is? a) (clr-is System.IO.PathTooLongException a))
+  (define (path-too-long-exception? a)
+    (clr-is System.IO.PathTooLongException a)))

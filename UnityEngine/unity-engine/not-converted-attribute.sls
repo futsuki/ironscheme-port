@@ -1,0 +1,11 @@
+(library (unity-engine not-converted-attribute)
+  (export new is? not-converted-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.NotConvertedAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.NotConvertedAttribute a))
+  (define (not-converted-attribute? a)
+    (clr-is UnityEngine.NotConvertedAttribute a)))

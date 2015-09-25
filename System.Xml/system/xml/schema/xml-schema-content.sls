@@ -1,0 +1,6 @@
+(library (system xml schema xml-schema-content)
+  (export is? xml-schema-content?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaContent a))
+  (define (xml-schema-content? a)
+    (clr-is System.Xml.Schema.XmlSchemaContent a)))

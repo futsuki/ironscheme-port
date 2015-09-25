@@ -1,0 +1,11 @@
+(library (system data invalid-expression-exception)
+  (export new is? invalid-expression-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.InvalidExpressionException a ...)))))
+  (define (is? a) (clr-is System.Data.InvalidExpressionException a))
+  (define (invalid-expression-exception? a)
+    (clr-is System.Data.InvalidExpressionException a)))

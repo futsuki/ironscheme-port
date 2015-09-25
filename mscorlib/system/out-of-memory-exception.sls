@@ -1,0 +1,10 @@
+(library (system out-of-memory-exception)
+  (export new is? out-of-memory-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.OutOfMemoryException a ...)))))
+  (define (is? a) (clr-is System.OutOfMemoryException a))
+  (define (out-of-memory-exception? a)
+    (clr-is System.OutOfMemoryException a)))

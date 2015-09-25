@@ -1,0 +1,11 @@
+(library (system component-model int16-converter)
+  (export new is? int16-converter?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.ComponentModel.Int16Converter a ...)))))
+  (define (is? a) (clr-is System.ComponentModel.Int16Converter a))
+  (define (int16-converter? a)
+    (clr-is System.ComponentModel.Int16Converter a)))

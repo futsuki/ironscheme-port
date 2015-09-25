@@ -1,0 +1,99 @@
+(library (system data ole-db gda-timestamp)
+  (export new
+          is?
+          gda-timestamp?
+          year-get
+          year-set!
+          year-update!
+          month-get
+          month-set!
+          month-update!
+          day-get
+          day-set!
+          day-update!
+          hour-get
+          hour-set!
+          hour-update!
+          minute-get
+          minute-set!
+          minute-update!
+          second-get
+          second-set!
+          second-update!
+          fraction-get
+          fraction-set!
+          fraction-update!
+          timezone-get
+          timezone-set!
+          timezone-update!)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Data.OleDb.GdaTimestamp a ...)))))
+  (define (is? a) (clr-is System.Data.OleDb.GdaTimestamp a))
+  (define (gda-timestamp? a) (clr-is System.Data.OleDb.GdaTimestamp a))
+  (define-field-port
+    year-get
+    year-set!
+    year-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    year
+    System.Int16)
+  (define-field-port
+    month-get
+    month-set!
+    month-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    month
+    System.UInt16)
+  (define-field-port
+    day-get
+    day-set!
+    day-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    day
+    System.UInt16)
+  (define-field-port
+    hour-get
+    hour-set!
+    hour-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    hour
+    System.UInt16)
+  (define-field-port
+    minute-get
+    minute-set!
+    minute-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    minute
+    System.UInt16)
+  (define-field-port
+    second-get
+    second-set!
+    second-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    second
+    System.UInt16)
+  (define-field-port
+    fraction-get
+    fraction-set!
+    fraction-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    fraction
+    System.UInt64)
+  (define-field-port
+    timezone-get
+    timezone-set!
+    timezone-update!
+    ()
+    System.Data.OleDb.GdaTimestamp
+    timezone
+    System.Int64))

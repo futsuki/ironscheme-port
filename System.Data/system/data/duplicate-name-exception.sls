@@ -1,0 +1,11 @@
+(library (system data duplicate-name-exception)
+  (export new is? duplicate-name-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.DuplicateNameException a ...)))))
+  (define (is? a) (clr-is System.Data.DuplicateNameException a))
+  (define (duplicate-name-exception? a)
+    (clr-is System.Data.DuplicateNameException a)))

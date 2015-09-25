@@ -1,0 +1,10 @@
+(library (unity-engine remote-notification)
+  (export new is? remote-notification?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.RemoteNotification a ...)))))
+  (define (is? a) (clr-is UnityEngine.RemoteNotification a))
+  (define (remote-notification? a)
+    (clr-is UnityEngine.RemoteNotification a)))

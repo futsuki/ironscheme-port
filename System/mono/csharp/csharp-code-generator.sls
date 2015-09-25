@@ -1,0 +1,10 @@
+(library (mono csharp csharp-code-generator)
+  (export new is? csharp-code-generator?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new Mono.CSharp.CSharpCodeGenerator a ...)))))
+  (define (is? a) (clr-is Mono.CSharp.CSharpCodeGenerator a))
+  (define (csharp-code-generator? a)
+    (clr-is Mono.CSharp.CSharpCodeGenerator a)))

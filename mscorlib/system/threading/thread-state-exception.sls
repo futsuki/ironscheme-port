@@ -1,0 +1,11 @@
+(library (system threading thread-state-exception)
+  (export new is? thread-state-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Threading.ThreadStateException a ...)))))
+  (define (is? a) (clr-is System.Threading.ThreadStateException a))
+  (define (thread-state-exception? a)
+    (clr-is System.Threading.ThreadStateException a)))

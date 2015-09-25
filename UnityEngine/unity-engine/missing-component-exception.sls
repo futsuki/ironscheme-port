@@ -1,0 +1,11 @@
+(library (unity-engine missing-component-exception)
+  (export new is? missing-component-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.MissingComponentException a ...)))))
+  (define (is? a) (clr-is UnityEngine.MissingComponentException a))
+  (define (missing-component-exception? a)
+    (clr-is UnityEngine.MissingComponentException a)))

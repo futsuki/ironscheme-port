@@ -1,0 +1,154 @@
+(library (system reflection emit constructor-on-type-builder-inst)
+  (export new
+          is?
+          constructor-on-type-builder-inst?
+          get-generic-arguments
+          invoke
+          is-defined?
+          get-custom-attributes
+          get-parameters
+          get-method-implementation-flags
+          declaring-type
+          name
+          reflected-type
+          metadata-token
+          method-handle
+          attributes
+          calling-convention
+          contains-generic-parameters?
+          is-generic-method-definition?
+          is-generic-method?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new
+             System.Reflection.Emit.ConstructorOnTypeBuilderInst
+             a
+             ...)))))
+  (define (is? a)
+    (clr-is System.Reflection.Emit.ConstructorOnTypeBuilderInst a))
+  (define (constructor-on-type-builder-inst? a)
+    (clr-is System.Reflection.Emit.ConstructorOnTypeBuilderInst a))
+  (define-method-port
+    get-generic-arguments
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    GetGenericArguments
+    (System.Type[]))
+  (define-method-port
+    invoke
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    Invoke
+    (System.Object
+      System.Reflection.BindingFlags
+      System.Reflection.Binder
+      System.Object[]
+      System.Globalization.CultureInfo)
+    (System.Object
+      System.Object
+      System.Reflection.BindingFlags
+      System.Reflection.Binder
+      System.Object[]
+      System.Globalization.CultureInfo))
+  (define-method-port
+    is-defined?
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    IsDefined
+    (System.Boolean System.Type System.Boolean))
+  (define-method-port
+    get-custom-attributes
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    GetCustomAttributes
+    (System.Object[] System.Type System.Boolean)
+    (System.Object[] System.Boolean))
+  (define-method-port
+    get-parameters
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    GetParameters
+    (System.Reflection.ParameterInfo[]))
+  (define-method-port
+    get-method-implementation-flags
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    GetMethodImplementationFlags
+    (System.Reflection.MethodImplAttributes))
+  (define-field-port
+    declaring-type
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    DeclaringType
+    System.Type)
+  (define-field-port
+    name
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    Name
+    System.String)
+  (define-field-port
+    reflected-type
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    ReflectedType
+    System.Type)
+  (define-field-port
+    metadata-token
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    MetadataToken
+    System.Int32)
+  (define-field-port
+    method-handle
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    MethodHandle
+    System.RuntimeMethodHandle)
+  (define-field-port
+    attributes
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    Attributes
+    System.Reflection.MethodAttributes)
+  (define-field-port
+    calling-convention
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    CallingConvention
+    System.Reflection.CallingConventions)
+  (define-field-port
+    contains-generic-parameters?
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    ContainsGenericParameters
+    System.Boolean)
+  (define-field-port
+    is-generic-method-definition?
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    IsGenericMethodDefinition
+    System.Boolean)
+  (define-field-port
+    is-generic-method?
+    #f
+    #f
+    (property:)
+    System.Reflection.Emit.ConstructorOnTypeBuilderInst
+    IsGenericMethod
+    System.Boolean))

@@ -1,0 +1,176 @@
+(library (system diagnostics event-log-impl)
+  (export is?
+          event-log-impl?
+          delete
+          begin-init
+          create-event-source
+          dispose
+          write-entry
+          source-exists?
+          register-display-name
+          modify-overflow-policy
+          get-event-logs
+          enable-notification
+          exists?
+          get-entries
+          end-init
+          delete-event-source
+          clear
+          log-name-from-source-name
+          disable-notification
+          close
+          entry-count
+          item
+          log-display-name
+          overflow-action
+          minimum-retention-days
+          maximum-kilobytes-get
+          maximum-kilobytes-set!
+          maximum-kilobytes-update!)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Diagnostics.EventLogImpl a))
+  (define (event-log-impl? a)
+    (clr-is System.Diagnostics.EventLogImpl a))
+  (define-method-port
+    delete
+    System.Diagnostics.EventLogImpl
+    Delete
+    (System.Void System.String System.String))
+  (define-method-port
+    begin-init
+    System.Diagnostics.EventLogImpl
+    BeginInit
+    (System.Void))
+  (define-method-port
+    create-event-source
+    System.Diagnostics.EventLogImpl
+    CreateEventSource
+    (System.Void System.Diagnostics.EventSourceCreationData))
+  (define-method-port
+    dispose
+    System.Diagnostics.EventLogImpl
+    Dispose
+    (System.Void System.Boolean))
+  (define-method-port
+    write-entry
+    System.Diagnostics.EventLogImpl
+    WriteEntry
+    (System.Void
+      System.String[]
+      System.Diagnostics.EventLogEntryType
+      System.UInt32
+      System.Int16
+      System.Byte[]))
+  (define-method-port
+    source-exists?
+    System.Diagnostics.EventLogImpl
+    SourceExists
+    (System.Boolean System.String System.String))
+  (define-method-port
+    register-display-name
+    System.Diagnostics.EventLogImpl
+    RegisterDisplayName
+    (System.Void System.String System.Int64))
+  (define-method-port
+    modify-overflow-policy
+    System.Diagnostics.EventLogImpl
+    ModifyOverflowPolicy
+    (System.Void System.Diagnostics.OverflowAction System.Int32))
+  (define-method-port
+    get-event-logs
+    System.Diagnostics.EventLogImpl
+    GetEventLogs
+    (System.Diagnostics.EventLog[] System.String))
+  (define-method-port
+    enable-notification
+    System.Diagnostics.EventLogImpl
+    EnableNotification
+    (System.Void))
+  (define-method-port
+    exists?
+    System.Diagnostics.EventLogImpl
+    Exists
+    (System.Boolean System.String System.String))
+  (define-method-port
+    get-entries
+    System.Diagnostics.EventLogImpl
+    GetEntries
+    (System.Diagnostics.EventLogEntry[]))
+  (define-method-port
+    end-init
+    System.Diagnostics.EventLogImpl
+    EndInit
+    (System.Void))
+  (define-method-port
+    delete-event-source
+    System.Diagnostics.EventLogImpl
+    DeleteEventSource
+    (System.Void System.String System.String))
+  (define-method-port
+    clear
+    System.Diagnostics.EventLogImpl
+    Clear
+    (System.Void))
+  (define-method-port
+    log-name-from-source-name
+    System.Diagnostics.EventLogImpl
+    LogNameFromSourceName
+    (System.String System.String System.String))
+  (define-method-port
+    disable-notification
+    System.Diagnostics.EventLogImpl
+    DisableNotification
+    (System.Void))
+  (define-method-port
+    close
+    System.Diagnostics.EventLogImpl
+    Close
+    (System.Void))
+  (define-field-port
+    entry-count
+    #f
+    #f
+    (property:)
+    System.Diagnostics.EventLogImpl
+    EntryCount
+    System.Int32)
+  (define-field-port
+    item
+    #f
+    #f
+    (property:)
+    System.Diagnostics.EventLogImpl
+    Item
+    System.Diagnostics.EventLogEntry)
+  (define-field-port
+    log-display-name
+    #f
+    #f
+    (property:)
+    System.Diagnostics.EventLogImpl
+    LogDisplayName
+    System.String)
+  (define-field-port
+    overflow-action
+    #f
+    #f
+    (property:)
+    System.Diagnostics.EventLogImpl
+    OverflowAction
+    System.Diagnostics.OverflowAction)
+  (define-field-port
+    minimum-retention-days
+    #f
+    #f
+    (property:)
+    System.Diagnostics.EventLogImpl
+    MinimumRetentionDays
+    System.Int32)
+  (define-field-port
+    maximum-kilobytes-get
+    maximum-kilobytes-set!
+    maximum-kilobytes-update!
+    (property:)
+    System.Diagnostics.EventLogImpl
+    MaximumKilobytes
+    System.Int64))

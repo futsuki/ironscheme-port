@@ -1,0 +1,137 @@
+(library (system data table-mapping)
+  (export new
+          is?
+          table-mapping?
+          get-column
+          contains-column?
+          remove-element-column
+          table-get
+          table-set!
+          table-update!
+          elements-get
+          elements-set!
+          elements-update!
+          attributes-get
+          attributes-set!
+          attributes-update!
+          simple-content-get
+          simple-content-set!
+          simple-content-update!
+          primary-key-get
+          primary-key-set!
+          primary-key-update!
+          reference-key-get
+          reference-key-set!
+          reference-key-update!
+          last-element-index-get
+          last-element-index-set!
+          last-element-index-update!
+          parent-table-get
+          parent-table-set!
+          parent-table-update!
+          child-tables-get
+          child-tables-set!
+          child-tables-update!
+          exists-in-data-set?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Data.TableMapping a ...)))))
+  (define (is? a) (clr-is System.Data.TableMapping a))
+  (define (table-mapping? a) (clr-is System.Data.TableMapping a))
+  (define-method-port
+    get-column
+    System.Data.TableMapping
+    GetColumn
+    (System.Data.DataColumn System.String))
+  (define-method-port
+    contains-column?
+    System.Data.TableMapping
+    ContainsColumn
+    (System.Boolean System.String))
+  (define-method-port
+    remove-element-column
+    System.Data.TableMapping
+    RemoveElementColumn
+    (System.Void System.String))
+  (define-field-port
+    table-get
+    table-set!
+    table-update!
+    ()
+    System.Data.TableMapping
+    Table
+    System.Data.DataTable)
+  (define-field-port
+    elements-get
+    elements-set!
+    elements-update!
+    ()
+    System.Data.TableMapping
+    Elements
+    System.Collections.ArrayList)
+  (define-field-port
+    attributes-get
+    attributes-set!
+    attributes-update!
+    ()
+    System.Data.TableMapping
+    Attributes
+    System.Collections.ArrayList)
+  (define-field-port
+    simple-content-get
+    simple-content-set!
+    simple-content-update!
+    ()
+    System.Data.TableMapping
+    SimpleContent
+    System.Data.DataColumn)
+  (define-field-port
+    primary-key-get
+    primary-key-set!
+    primary-key-update!
+    ()
+    System.Data.TableMapping
+    PrimaryKey
+    System.Data.DataColumn)
+  (define-field-port
+    reference-key-get
+    reference-key-set!
+    reference-key-update!
+    ()
+    System.Data.TableMapping
+    ReferenceKey
+    System.Data.DataColumn)
+  (define-field-port
+    last-element-index-get
+    last-element-index-set!
+    last-element-index-update!
+    ()
+    System.Data.TableMapping
+    lastElementIndex
+    System.Int32)
+  (define-field-port
+    parent-table-get
+    parent-table-set!
+    parent-table-update!
+    ()
+    System.Data.TableMapping
+    ParentTable
+    System.Data.TableMapping)
+  (define-field-port
+    child-tables-get
+    child-tables-set!
+    child-tables-update!
+    ()
+    System.Data.TableMapping
+    ChildTables
+    System.Data.TableMappingCollection)
+  (define-field-port
+    exists-in-data-set?
+    #f
+    #f
+    (property:)
+    System.Data.TableMapping
+    ExistsInDataSet
+    System.Boolean))

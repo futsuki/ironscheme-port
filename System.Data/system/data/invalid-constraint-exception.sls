@@ -1,0 +1,11 @@
+(library (system data invalid-constraint-exception)
+  (export new is? invalid-constraint-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.InvalidConstraintException a ...)))))
+  (define (is? a) (clr-is System.Data.InvalidConstraintException a))
+  (define (invalid-constraint-exception? a)
+    (clr-is System.Data.InvalidConstraintException a)))

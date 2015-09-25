@@ -1,0 +1,6 @@
+(library (system context-bound-object)
+  (export is? context-bound-object?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.ContextBoundObject a))
+  (define (context-bound-object? a)
+    (clr-is System.ContextBoundObject a)))

@@ -1,0 +1,10 @@
+(library (system threading auto-reset-event)
+  (export new is? auto-reset-event?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Threading.AutoResetEvent a ...)))))
+  (define (is? a) (clr-is System.Threading.AutoResetEvent a))
+  (define (auto-reset-event? a)
+    (clr-is System.Threading.AutoResetEvent a)))

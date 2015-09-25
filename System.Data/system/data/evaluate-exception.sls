@@ -1,0 +1,10 @@
+(library (system data evaluate-exception)
+  (export new is? evaluate-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Data.EvaluateException a ...)))))
+  (define (is? a) (clr-is System.Data.EvaluateException a))
+  (define (evaluate-exception? a)
+    (clr-is System.Data.EvaluateException a)))

@@ -1,0 +1,10 @@
+(library (system gopher-style-uri-parser)
+  (export new is? gopher-style-uri-parser?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.GopherStyleUriParser a ...)))))
+  (define (is? a) (clr-is System.GopherStyleUriParser a))
+  (define (gopher-style-uri-parser? a)
+    (clr-is System.GopherStyleUriParser a)))

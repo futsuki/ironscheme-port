@@ -1,0 +1,11 @@
+(library (system data common single-data-container)
+  (export new is? single-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.SingleDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.SingleDataContainer a))
+  (define (single-data-container? a)
+    (clr-is System.Data.Common.SingleDataContainer a)))

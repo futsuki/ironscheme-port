@@ -1,0 +1,10 @@
+(library (unity-engine execute-in-edit-mode)
+  (export new is? execute-in-edit-mode?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.ExecuteInEditMode a ...)))))
+  (define (is? a) (clr-is UnityEngine.ExecuteInEditMode a))
+  (define (execute-in-edit-mode? a)
+    (clr-is UnityEngine.ExecuteInEditMode a)))

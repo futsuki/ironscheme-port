@@ -1,0 +1,11 @@
+(library (system io directory-not-found-exception)
+  (export new is? directory-not-found-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.IO.DirectoryNotFoundException a ...)))))
+  (define (is? a) (clr-is System.IO.DirectoryNotFoundException a))
+  (define (directory-not-found-exception? a)
+    (clr-is System.IO.DirectoryNotFoundException a)))

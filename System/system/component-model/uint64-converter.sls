@@ -1,0 +1,11 @@
+(library (system component-model uint64-converter)
+  (export new is? uint64-converter?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.ComponentModel.UInt64Converter a ...)))))
+  (define (is? a) (clr-is System.ComponentModel.UInt64Converter a))
+  (define (uint64-converter? a)
+    (clr-is System.ComponentModel.UInt64Converter a)))

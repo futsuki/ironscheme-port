@@ -1,0 +1,10 @@
+(library (system stack-overflow-exception)
+  (export new is? stack-overflow-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.StackOverflowException a ...)))))
+  (define (is? a) (clr-is System.StackOverflowException a))
+  (define (stack-overflow-exception? a)
+    (clr-is System.StackOverflowException a)))

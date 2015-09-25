@@ -1,0 +1,106 @@
+(library (system runtime remoting contexts synchronization-attribute)
+  (export new
+          is?
+          synchronization-attribute?
+          is-context-ok?
+          get-server-context-sink
+          get-properties-for-new-context
+          get-client-context-sink
+          not-supported
+          supported
+          required
+          requires-new
+          is-re-entrant?
+          locked?-get
+          locked?-set!
+          locked?-update!)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new
+             System.Runtime.Remoting.Contexts.SynchronizationAttribute
+             a
+             ...)))))
+  (define (is? a)
+    (clr-is
+      System.Runtime.Remoting.Contexts.SynchronizationAttribute
+      a))
+  (define (synchronization-attribute? a)
+    (clr-is
+      System.Runtime.Remoting.Contexts.SynchronizationAttribute
+      a))
+  (define-method-port
+    is-context-ok?
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    IsContextOK
+    (System.Boolean
+      System.Runtime.Remoting.Contexts.Context
+      System.Runtime.Remoting.Activation.IConstructionCallMessage))
+  (define-method-port
+    get-server-context-sink
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    GetServerContextSink
+    (System.Runtime.Remoting.Messaging.IMessageSink
+      System.Runtime.Remoting.Messaging.IMessageSink))
+  (define-method-port
+    get-properties-for-new-context
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    GetPropertiesForNewContext
+    (System.Void
+      System.Runtime.Remoting.Activation.IConstructionCallMessage))
+  (define-method-port
+    get-client-context-sink
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    GetClientContextSink
+    (System.Runtime.Remoting.Messaging.IMessageSink
+      System.Runtime.Remoting.Messaging.IMessageSink))
+  (define-field-port
+    not-supported
+    #f
+    #f
+    (static:)
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    NOT_SUPPORTED
+    System.Int32)
+  (define-field-port
+    supported
+    #f
+    #f
+    (static:)
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    SUPPORTED
+    System.Int32)
+  (define-field-port
+    required
+    #f
+    #f
+    (static:)
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    REQUIRED
+    System.Int32)
+  (define-field-port
+    requires-new
+    #f
+    #f
+    (static:)
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    REQUIRES_NEW
+    System.Int32)
+  (define-field-port
+    is-re-entrant?
+    #f
+    #f
+    (property:)
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    IsReEntrant
+    System.Boolean)
+  (define-field-port
+    locked?-get
+    locked?-set!
+    locked?-update!
+    (property:)
+    System.Runtime.Remoting.Contexts.SynchronizationAttribute
+    Locked
+    System.Boolean))

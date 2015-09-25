@@ -1,0 +1,6 @@
+(library (system runtime compiler-services is-const)
+  (export is? is-const?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Runtime.CompilerServices.IsConst a))
+  (define (is-const? a)
+    (clr-is System.Runtime.CompilerServices.IsConst a)))

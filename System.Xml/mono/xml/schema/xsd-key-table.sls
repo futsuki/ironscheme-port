@@ -1,0 +1,114 @@
+(library (mono xml schema xsd-key-table)
+  (export new
+          is?
+          xsd-key-table?
+          selector-matches
+          reset
+          always-true?
+          entries-get
+          entries-set!
+          entries-update!
+          finished-entries-get
+          finished-entries-set!
+          finished-entries-update!
+          start-depth-get
+          start-depth-set!
+          start-depth-update!
+          referenced-key-get
+          referenced-key-set!
+          referenced-key-update!
+          qualified-name
+          ref-key-name
+          source-schema-identity
+          selector)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new Mono.Xml.Schema.XsdKeyTable a ...)))))
+  (define (is? a) (clr-is Mono.Xml.Schema.XsdKeyTable a))
+  (define (xsd-key-table? a) (clr-is Mono.Xml.Schema.XsdKeyTable a))
+  (define-method-port
+    selector-matches
+    Mono.Xml.Schema.XsdKeyTable
+    SelectorMatches
+    (Mono.Xml.Schema.XsdIdentityPath
+      System.Collections.ArrayList
+      System.Int32))
+  (define-method-port
+    reset
+    Mono.Xml.Schema.XsdKeyTable
+    Reset
+    (System.Void System.Xml.Schema.XmlSchemaIdentityConstraint))
+  (define-field-port
+    always-true?
+    #f
+    #f
+    ()
+    Mono.Xml.Schema.XsdKeyTable
+    alwaysTrue
+    System.Boolean)
+  (define-field-port
+    entries-get
+    entries-set!
+    entries-update!
+    ()
+    Mono.Xml.Schema.XsdKeyTable
+    Entries
+    Mono.Xml.Schema.XsdKeyEntryCollection)
+  (define-field-port
+    finished-entries-get
+    finished-entries-set!
+    finished-entries-update!
+    ()
+    Mono.Xml.Schema.XsdKeyTable
+    FinishedEntries
+    Mono.Xml.Schema.XsdKeyEntryCollection)
+  (define-field-port
+    start-depth-get
+    start-depth-set!
+    start-depth-update!
+    ()
+    Mono.Xml.Schema.XsdKeyTable
+    StartDepth
+    System.Int32)
+  (define-field-port
+    referenced-key-get
+    referenced-key-set!
+    referenced-key-update!
+    ()
+    Mono.Xml.Schema.XsdKeyTable
+    ReferencedKey
+    Mono.Xml.Schema.XsdKeyTable)
+  (define-field-port
+    qualified-name
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XsdKeyTable
+    QualifiedName
+    System.Xml.XmlQualifiedName)
+  (define-field-port
+    ref-key-name
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XsdKeyTable
+    RefKeyName
+    System.Xml.XmlQualifiedName)
+  (define-field-port
+    source-schema-identity
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XsdKeyTable
+    SourceSchemaIdentity
+    System.Xml.Schema.XmlSchemaIdentityConstraint)
+  (define-field-port
+    selector
+    #f
+    #f
+    (property:)
+    Mono.Xml.Schema.XsdKeyTable
+    Selector
+    Mono.Xml.Schema.XsdIdentitySelector))

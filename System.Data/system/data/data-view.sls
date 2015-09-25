@@ -1,0 +1,200 @@
+(library (system data data-view)
+  (export new
+          is?
+          data-view?
+          find
+          delete
+          begin-init
+          get-enumerator
+          to-table
+          end-init
+          find-rows
+          copy-to
+          equals?
+          add-new
+          allow-delete?-get
+          allow-delete?-set!
+          allow-delete?-update!
+          allow-edit?-get
+          allow-edit?-set!
+          allow-edit?-update!
+          allow-new?-get
+          allow-new?-set!
+          allow-new?-update!
+          apply-default-sort?-get
+          apply-default-sort?-set!
+          apply-default-sort?-update!
+          count
+          data-view-manager
+          item
+          row-filter-get
+          row-filter-set!
+          row-filter-update!
+          row-state-filter-get
+          row-state-filter-set!
+          row-state-filter-update!
+          sort-get
+          sort-set!
+          sort-update!
+          table-get
+          table-set!
+          table-update!
+          is-initialized?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.Data.DataView a ...)))))
+  (define (is? a) (clr-is System.Data.DataView a))
+  (define (data-view? a) (clr-is System.Data.DataView a))
+  (define-method-port
+    find
+    System.Data.DataView
+    Find
+    (System.Int32 System.Object[])
+    (System.Int32 System.Object))
+  (define-method-port
+    delete
+    System.Data.DataView
+    Delete
+    (System.Void System.Int32))
+  (define-method-port
+    begin-init
+    System.Data.DataView
+    BeginInit
+    (System.Void))
+  (define-method-port
+    get-enumerator
+    System.Data.DataView
+    GetEnumerator
+    (System.Collections.IEnumerator))
+  (define-method-port
+    to-table
+    System.Data.DataView
+    ToTable
+    (System.Data.DataTable System.String System.Boolean System.String[])
+    (System.Data.DataTable System.Boolean System.String[])
+    (System.Data.DataTable System.String)
+    (System.Data.DataTable))
+  (define-method-port
+    end-init
+    System.Data.DataView
+    EndInit
+    (System.Void))
+  (define-method-port
+    find-rows
+    System.Data.DataView
+    FindRows
+    (System.Data.DataRowView[] System.Object[])
+    (System.Data.DataRowView[] System.Object))
+  (define-method-port
+    copy-to
+    System.Data.DataView
+    CopyTo
+    (System.Void System.Array System.Int32))
+  (define-method-port
+    equals?
+    System.Data.DataView
+    Equals
+    (System.Boolean System.Data.DataView))
+  (define-method-port
+    add-new
+    System.Data.DataView
+    AddNew
+    (System.Data.DataRowView))
+  (define-field-port
+    allow-delete?-get
+    allow-delete?-set!
+    allow-delete?-update!
+    (property:)
+    System.Data.DataView
+    AllowDelete
+    System.Boolean)
+  (define-field-port
+    allow-edit?-get
+    allow-edit?-set!
+    allow-edit?-update!
+    (property:)
+    System.Data.DataView
+    AllowEdit
+    System.Boolean)
+  (define-field-port
+    allow-new?-get
+    allow-new?-set!
+    allow-new?-update!
+    (property:)
+    System.Data.DataView
+    AllowNew
+    System.Boolean)
+  (define-field-port
+    apply-default-sort?-get
+    apply-default-sort?-set!
+    apply-default-sort?-update!
+    (property:)
+    System.Data.DataView
+    ApplyDefaultSort
+    System.Boolean)
+  (define-field-port
+    count
+    #f
+    #f
+    (property:)
+    System.Data.DataView
+    Count
+    System.Int32)
+  (define-field-port
+    data-view-manager
+    #f
+    #f
+    (property:)
+    System.Data.DataView
+    DataViewManager
+    System.Data.DataViewManager)
+  (define-field-port
+    item
+    #f
+    #f
+    (property:)
+    System.Data.DataView
+    Item
+    System.Data.DataRowView)
+  (define-field-port
+    row-filter-get
+    row-filter-set!
+    row-filter-update!
+    (property:)
+    System.Data.DataView
+    RowFilter
+    System.String)
+  (define-field-port
+    row-state-filter-get
+    row-state-filter-set!
+    row-state-filter-update!
+    (property:)
+    System.Data.DataView
+    RowStateFilter
+    System.Data.DataViewRowState)
+  (define-field-port
+    sort-get
+    sort-set!
+    sort-update!
+    (property:)
+    System.Data.DataView
+    Sort
+    System.String)
+  (define-field-port
+    table-get
+    table-set!
+    table-update!
+    (property:)
+    System.Data.DataView
+    Table
+    System.Data.DataTable)
+  (define-field-port
+    is-initialized?
+    #f
+    #f
+    (property:)
+    System.Data.DataView
+    IsInitialized
+    System.Boolean))

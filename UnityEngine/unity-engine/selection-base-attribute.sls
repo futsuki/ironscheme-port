@@ -1,0 +1,11 @@
+(library (unity-engine selection-base-attribute)
+  (export new is? selection-base-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.SelectionBaseAttribute a ...)))))
+  (define (is? a) (clr-is UnityEngine.SelectionBaseAttribute a))
+  (define (selection-base-attribute? a)
+    (clr-is UnityEngine.SelectionBaseAttribute a)))

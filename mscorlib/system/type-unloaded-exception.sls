@@ -1,0 +1,10 @@
+(library (system type-unloaded-exception)
+  (export new is? type-unloaded-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.TypeUnloadedException a ...)))))
+  (define (is? a) (clr-is System.TypeUnloadedException a))
+  (define (type-unloaded-exception? a)
+    (clr-is System.TypeUnloadedException a)))

@@ -1,0 +1,10 @@
+(library (unity-engine local-notification)
+  (export new is? local-notification?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.LocalNotification a ...)))))
+  (define (is? a) (clr-is UnityEngine.LocalNotification a))
+  (define (local-notification? a)
+    (clr-is UnityEngine.LocalNotification a)))

@@ -1,0 +1,99 @@
+(library (unity-engine area-effector2-d)
+  (export new
+          is?
+          area-effector2-d?
+          force-direction-get
+          force-direction-set!
+          force-direction-update!
+          force-angle-get
+          force-angle-set!
+          force-angle-update!
+          use-global-angle?-get
+          use-global-angle?-set!
+          use-global-angle?-update!
+          force-magnitude-get
+          force-magnitude-set!
+          force-magnitude-update!
+          force-variation-get
+          force-variation-set!
+          force-variation-update!
+          drag-get
+          drag-set!
+          drag-update!
+          angular-drag-get
+          angular-drag-set!
+          angular-drag-update!
+          force-target-get
+          force-target-set!
+          force-target-update!)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.AreaEffector2D a ...)))))
+  (define (is? a) (clr-is UnityEngine.AreaEffector2D a))
+  (define (area-effector2-d? a) (clr-is UnityEngine.AreaEffector2D a))
+  (define-field-port
+    force-direction-get
+    force-direction-set!
+    force-direction-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    forceDirection
+    System.Single)
+  (define-field-port
+    force-angle-get
+    force-angle-set!
+    force-angle-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    forceAngle
+    System.Single)
+  (define-field-port
+    use-global-angle?-get
+    use-global-angle?-set!
+    use-global-angle?-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    useGlobalAngle
+    System.Boolean)
+  (define-field-port
+    force-magnitude-get
+    force-magnitude-set!
+    force-magnitude-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    forceMagnitude
+    System.Single)
+  (define-field-port
+    force-variation-get
+    force-variation-set!
+    force-variation-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    forceVariation
+    System.Single)
+  (define-field-port
+    drag-get
+    drag-set!
+    drag-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    drag
+    System.Single)
+  (define-field-port
+    angular-drag-get
+    angular-drag-set!
+    angular-drag-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    angularDrag
+    System.Single)
+  (define-field-port
+    force-target-get
+    force-target-set!
+    force-target-update!
+    (property:)
+    UnityEngine.AreaEffector2D
+    forceTarget
+    UnityEngine.EffectorSelection2D))

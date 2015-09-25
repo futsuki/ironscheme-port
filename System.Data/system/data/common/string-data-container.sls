@@ -1,0 +1,11 @@
+(library (system data common string-data-container)
+  (export new is? string-data-container?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Data.Common.StringDataContainer a ...)))))
+  (define (is? a) (clr-is System.Data.Common.StringDataContainer a))
+  (define (string-data-container? a)
+    (clr-is System.Data.Common.StringDataContainer a)))

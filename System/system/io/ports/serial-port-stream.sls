@@ -1,0 +1,186 @@
+(library (system io ports serial-port-stream)
+  (export new
+          is?
+          serial-port-stream?
+          read
+          discard-in-buffer
+          set-break-state
+          set-attributes
+          write
+          set-length
+          get-signals
+          discard-out-buffer
+          seek
+          flush
+          set-signal
+          close
+          can-read?
+          can-seek?
+          can-write?
+          can-timeout?
+          read-timeout-get
+          read-timeout-set!
+          read-timeout-update!
+          write-timeout-get
+          write-timeout-set!
+          write-timeout-update!
+          length
+          position-get
+          position-set!
+          position-update!
+          bytes-to-read
+          bytes-to-write)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.IO.Ports.SerialPortStream a ...)))))
+  (define (is? a) (clr-is System.IO.Ports.SerialPortStream a))
+  (define (serial-port-stream? a)
+    (clr-is System.IO.Ports.SerialPortStream a))
+  (define-method-port
+    read
+    System.IO.Ports.SerialPortStream
+    Read
+    (System.Int32 System.Byte[] System.Int32 System.Int32))
+  (define-method-port
+    discard-in-buffer
+    System.IO.Ports.SerialPortStream
+    DiscardInBuffer
+    (System.Void))
+  (define-method-port
+    set-break-state
+    System.IO.Ports.SerialPortStream
+    SetBreakState
+    (System.Void System.Boolean))
+  (define-method-port
+    set-attributes
+    System.IO.Ports.SerialPortStream
+    SetAttributes
+    (System.Void
+      System.Int32
+      System.IO.Ports.Parity
+      System.Int32
+      System.IO.Ports.StopBits
+      System.IO.Ports.Handshake))
+  (define-method-port
+    write
+    System.IO.Ports.SerialPortStream
+    Write
+    (System.Void System.Byte[] System.Int32 System.Int32))
+  (define-method-port
+    set-length
+    System.IO.Ports.SerialPortStream
+    SetLength
+    (System.Void System.Int64))
+  (define-method-port
+    get-signals
+    System.IO.Ports.SerialPortStream
+    GetSignals
+    (System.IO.Ports.SerialSignal))
+  (define-method-port
+    discard-out-buffer
+    System.IO.Ports.SerialPortStream
+    DiscardOutBuffer
+    (System.Void))
+  (define-method-port
+    seek
+    System.IO.Ports.SerialPortStream
+    Seek
+    (System.Int64 System.Int64 System.IO.SeekOrigin))
+  (define-method-port
+    flush
+    System.IO.Ports.SerialPortStream
+    Flush
+    (System.Void))
+  (define-method-port
+    set-signal
+    System.IO.Ports.SerialPortStream
+    SetSignal
+    (System.Void System.IO.Ports.SerialSignal System.Boolean))
+  (define-method-port
+    close
+    System.IO.Ports.SerialPortStream
+    Close
+    (System.Void))
+  (define-field-port
+    can-read?
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    CanRead
+    System.Boolean)
+  (define-field-port
+    can-seek?
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    CanSeek
+    System.Boolean)
+  (define-field-port
+    can-write?
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    CanWrite
+    System.Boolean)
+  (define-field-port
+    can-timeout?
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    CanTimeout
+    System.Boolean)
+  (define-field-port
+    read-timeout-get
+    read-timeout-set!
+    read-timeout-update!
+    (property:)
+    System.IO.Ports.SerialPortStream
+    ReadTimeout
+    System.Int32)
+  (define-field-port
+    write-timeout-get
+    write-timeout-set!
+    write-timeout-update!
+    (property:)
+    System.IO.Ports.SerialPortStream
+    WriteTimeout
+    System.Int32)
+  (define-field-port
+    length
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    Length
+    System.Int64)
+  (define-field-port
+    position-get
+    position-set!
+    position-update!
+    (property:)
+    System.IO.Ports.SerialPortStream
+    Position
+    System.Int64)
+  (define-field-port
+    bytes-to-read
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    BytesToRead
+    System.Int32)
+  (define-field-port
+    bytes-to-write
+    #f
+    #f
+    (property:)
+    System.IO.Ports.SerialPortStream
+    BytesToWrite
+    System.Int32))

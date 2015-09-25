@@ -1,0 +1,11 @@
+(library (jet-brains annotations pure-attribute)
+  (export new is? pure-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new JetBrains.Annotations.PureAttribute a ...)))))
+  (define (is? a) (clr-is JetBrains.Annotations.PureAttribute a))
+  (define (pure-attribute? a)
+    (clr-is JetBrains.Annotations.PureAttribute a)))

@@ -1,0 +1,10 @@
+(library (system param-array-attribute)
+  (export new is? param-array-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.ParamArrayAttribute a ...)))))
+  (define (is? a) (clr-is System.ParamArrayAttribute a))
+  (define (param-array-attribute? a)
+    (clr-is System.ParamArrayAttribute a)))

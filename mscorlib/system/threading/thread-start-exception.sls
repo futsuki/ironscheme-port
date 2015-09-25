@@ -1,0 +1,6 @@
+(library (system threading thread-start-exception)
+  (export is? thread-start-exception?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Threading.ThreadStartException a))
+  (define (thread-start-exception? a)
+    (clr-is System.Threading.ThreadStartException a)))

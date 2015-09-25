@@ -1,0 +1,11 @@
+(library (system array-type-mismatch-exception)
+  (export new is? array-type-mismatch-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.ArrayTypeMismatchException a ...)))))
+  (define (is? a) (clr-is System.ArrayTypeMismatchException a))
+  (define (array-type-mismatch-exception? a)
+    (clr-is System.ArrayTypeMismatchException a)))

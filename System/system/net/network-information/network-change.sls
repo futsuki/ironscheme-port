@@ -1,0 +1,7 @@
+(library (system net network-information network-change)
+  (export is? network-change?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Net.NetworkInformation.NetworkChange a))
+  (define (network-change? a)
+    (clr-is System.Net.NetworkInformation.NetworkChange a)))

@@ -1,0 +1,10 @@
+(library (unity-engine yield-instruction)
+  (export new is? yield-instruction?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.YieldInstruction a ...)))))
+  (define (is? a) (clr-is UnityEngine.YieldInstruction a))
+  (define (yield-instruction? a)
+    (clr-is UnityEngine.YieldInstruction a)))

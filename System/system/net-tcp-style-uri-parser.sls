@@ -1,0 +1,10 @@
+(library (system net-tcp-style-uri-parser)
+  (export new is? net-tcp-style-uri-parser?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.NetTcpStyleUriParser a ...)))))
+  (define (is? a) (clr-is System.NetTcpStyleUriParser a))
+  (define (net-tcp-style-uri-parser? a)
+    (clr-is System.NetTcpStyleUriParser a)))

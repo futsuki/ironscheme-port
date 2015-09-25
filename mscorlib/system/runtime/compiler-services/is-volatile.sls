@@ -1,0 +1,6 @@
+(library (system runtime compiler-services is-volatile)
+  (export is? is-volatile?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Runtime.CompilerServices.IsVolatile a))
+  (define (is-volatile? a)
+    (clr-is System.Runtime.CompilerServices.IsVolatile a)))

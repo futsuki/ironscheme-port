@@ -1,0 +1,11 @@
+(library (system entry-point-not-found-exception)
+  (export new is? entry-point-not-found-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.EntryPointNotFoundException a ...)))))
+  (define (is? a) (clr-is System.EntryPointNotFoundException a))
+  (define (entry-point-not-found-exception? a)
+    (clr-is System.EntryPointNotFoundException a)))

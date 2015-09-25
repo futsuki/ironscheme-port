@@ -1,0 +1,11 @@
+(library (system configuration default-section)
+  (export new is? default-section?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Configuration.DefaultSection a ...)))))
+  (define (is? a) (clr-is System.Configuration.DefaultSection a))
+  (define (default-section? a)
+    (clr-is System.Configuration.DefaultSection a)))

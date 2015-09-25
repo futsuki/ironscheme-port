@@ -1,0 +1,10 @@
+(library (unity-engine wait-for-end-of-frame)
+  (export new is? wait-for-end-of-frame?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.WaitForEndOfFrame a ...)))))
+  (define (is? a) (clr-is UnityEngine.WaitForEndOfFrame a))
+  (define (wait-for-end-of-frame? a)
+    (clr-is UnityEngine.WaitForEndOfFrame a)))

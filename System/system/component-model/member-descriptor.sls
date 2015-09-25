@@ -1,0 +1,82 @@
+(library (system component-model member-descriptor)
+  (export is?
+          member-descriptor?
+          get-hash-code
+          equals?
+          attributes
+          category
+          description
+          design-time-only?
+          display-name
+          name
+          is-browsable?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.ComponentModel.MemberDescriptor a))
+  (define (member-descriptor? a)
+    (clr-is System.ComponentModel.MemberDescriptor a))
+  (define-method-port
+    get-hash-code
+    System.ComponentModel.MemberDescriptor
+    GetHashCode
+    (System.Int32))
+  (define-method-port
+    equals?
+    System.ComponentModel.MemberDescriptor
+    Equals
+    (System.Boolean System.Object))
+  (define-field-port
+    attributes
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    Attributes
+    System.ComponentModel.AttributeCollection)
+  (define-field-port
+    category
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    Category
+    System.String)
+  (define-field-port
+    description
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    Description
+    System.String)
+  (define-field-port
+    design-time-only?
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    DesignTimeOnly
+    System.Boolean)
+  (define-field-port
+    display-name
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    DisplayName
+    System.String)
+  (define-field-port
+    name
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    Name
+    System.String)
+  (define-field-port
+    is-browsable?
+    #f
+    #f
+    (property:)
+    System.ComponentModel.MemberDescriptor
+    IsBrowsable
+    System.Boolean))

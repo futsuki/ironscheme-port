@@ -1,0 +1,10 @@
+(library (system null-reference-exception)
+  (export new is? null-reference-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.NullReferenceException a ...)))))
+  (define (is? a) (clr-is System.NullReferenceException a))
+  (define (null-reference-exception? a)
+    (clr-is System.NullReferenceException a)))

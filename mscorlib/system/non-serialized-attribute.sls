@@ -1,0 +1,10 @@
+(library (system non-serialized-attribute)
+  (export new is? non-serialized-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.NonSerializedAttribute a ...)))))
+  (define (is? a) (clr-is System.NonSerializedAttribute a))
+  (define (non-serialized-attribute? a)
+    (clr-is System.NonSerializedAttribute a)))

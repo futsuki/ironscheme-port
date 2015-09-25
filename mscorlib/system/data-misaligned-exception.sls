@@ -1,0 +1,10 @@
+(library (system data-misaligned-exception)
+  (export new is? data-misaligned-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.DataMisalignedException a ...)))))
+  (define (is? a) (clr-is System.DataMisalignedException a))
+  (define (data-misaligned-exception? a)
+    (clr-is System.DataMisalignedException a)))

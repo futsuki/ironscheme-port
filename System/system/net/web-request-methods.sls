@@ -1,0 +1,6 @@
+(library (system net web-request-methods)
+  (export is? web-request-methods?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Net.WebRequestMethods a))
+  (define (web-request-methods? a)
+    (clr-is System.Net.WebRequestMethods a)))

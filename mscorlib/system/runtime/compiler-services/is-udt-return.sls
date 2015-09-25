@@ -1,0 +1,7 @@
+(library (system runtime compiler-services is-udt-return)
+  (export is? is-udt-return?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.CompilerServices.IsUdtReturn a))
+  (define (is-udt-return? a)
+    (clr-is System.Runtime.CompilerServices.IsUdtReturn a)))

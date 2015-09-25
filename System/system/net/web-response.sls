@@ -1,0 +1,72 @@
+(library (system net web-response)
+  (export is?
+          web-response?
+          get-response-stream
+          close
+          content-length-get
+          content-length-set!
+          content-length-update!
+          content-type-get
+          content-type-set!
+          content-type-update!
+          headers
+          is-from-cache?
+          is-mutually-authenticated?
+          response-uri)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Net.WebResponse a))
+  (define (web-response? a) (clr-is System.Net.WebResponse a))
+  (define-method-port
+    get-response-stream
+    System.Net.WebResponse
+    GetResponseStream
+    (System.IO.Stream))
+  (define-method-port close System.Net.WebResponse Close (System.Void))
+  (define-field-port
+    content-length-get
+    content-length-set!
+    content-length-update!
+    (property:)
+    System.Net.WebResponse
+    ContentLength
+    System.Int64)
+  (define-field-port
+    content-type-get
+    content-type-set!
+    content-type-update!
+    (property:)
+    System.Net.WebResponse
+    ContentType
+    System.String)
+  (define-field-port
+    headers
+    #f
+    #f
+    (property:)
+    System.Net.WebResponse
+    Headers
+    System.Net.WebHeaderCollection)
+  (define-field-port
+    is-from-cache?
+    #f
+    #f
+    (property:)
+    System.Net.WebResponse
+    IsFromCache
+    System.Boolean)
+  (define-field-port
+    is-mutually-authenticated?
+    #f
+    #f
+    (property:)
+    System.Net.WebResponse
+    IsMutuallyAuthenticated
+    System.Boolean)
+  (define-field-port
+    response-uri
+    #f
+    #f
+    (property:)
+    System.Net.WebResponse
+    ResponseUri
+    System.Uri))

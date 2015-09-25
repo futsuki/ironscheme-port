@@ -1,0 +1,87 @@
+(library (microsoft win32 registry)
+  (export is?
+          registry?
+          set-value
+          get-value
+          classes-root
+          current-config
+          current-user
+          dyn-data
+          local-machine
+          performance-data
+          users)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is Microsoft.Win32.Registry a))
+  (define (registry? a) (clr-is Microsoft.Win32.Registry a))
+  (define-method-port
+    set-value
+    Microsoft.Win32.Registry
+    SetValue
+    (static:
+      System.Void
+      System.String
+      System.String
+      System.Object
+      Microsoft.Win32.RegistryValueKind)
+    (static: System.Void System.String System.String System.Object))
+  (define-method-port
+    get-value
+    Microsoft.Win32.Registry
+    GetValue
+    (static: System.Object System.String System.String System.Object))
+  (define-field-port
+    classes-root
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    ClassesRoot
+    Microsoft.Win32.RegistryKey)
+  (define-field-port
+    current-config
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    CurrentConfig
+    Microsoft.Win32.RegistryKey)
+  (define-field-port
+    current-user
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    CurrentUser
+    Microsoft.Win32.RegistryKey)
+  (define-field-port
+    dyn-data
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    DynData
+    Microsoft.Win32.RegistryKey)
+  (define-field-port
+    local-machine
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    LocalMachine
+    Microsoft.Win32.RegistryKey)
+  (define-field-port
+    performance-data
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    PerformanceData
+    Microsoft.Win32.RegistryKey)
+  (define-field-port
+    users
+    #f
+    #f
+    (static:)
+    Microsoft.Win32.Registry
+    Users
+    Microsoft.Win32.RegistryKey))

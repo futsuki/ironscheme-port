@@ -1,0 +1,10 @@
+(library (system application-exception)
+  (export new is? application-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.ApplicationException a ...)))))
+  (define (is? a) (clr-is System.ApplicationException a))
+  (define (application-exception? a)
+    (clr-is System.ApplicationException a)))

@@ -1,0 +1,5 @@
+(library (system data data-row-builder)
+  (export is? data-row-builder?)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Data.DataRowBuilder a))
+  (define (data-row-builder? a) (clr-is System.Data.DataRowBuilder a)))

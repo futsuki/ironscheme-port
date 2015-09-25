@@ -1,0 +1,11 @@
+(library (unity-engine disallow-multiple-component)
+  (export new is? disallow-multiple-component?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.DisallowMultipleComponent a ...)))))
+  (define (is? a) (clr-is UnityEngine.DisallowMultipleComponent a))
+  (define (disallow-multiple-component? a)
+    (clr-is UnityEngine.DisallowMultipleComponent a)))

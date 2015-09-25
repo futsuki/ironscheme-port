@@ -1,0 +1,205 @@
+(library (system reflection mono-generic-class)
+  (export is?
+          mono-generic-class?
+          make-array-type
+          get-properties
+          invoke-member
+          get-event
+          get-members
+          get-events
+          get-interface
+          get-nested-type
+          get-nested-types
+          get-constructors
+          is-defined?
+          make-by-ref-type
+          get-methods
+          get-custom-attributes
+          make-pointer-type
+          get-interfaces
+          get-fields
+          to-string
+          is-assignable-from?
+          get-field
+          base-type
+          underlying-system-type
+          name
+          namespace
+          full-name
+          assembly-qualified-name
+          guid)
+  (import (ironscheme-clr-port))
+  (define (is? a) (clr-is System.Reflection.MonoGenericClass a))
+  (define (mono-generic-class? a)
+    (clr-is System.Reflection.MonoGenericClass a))
+  (define-method-port
+    make-array-type
+    System.Reflection.MonoGenericClass
+    MakeArrayType
+    (System.Type System.Int32)
+    (System.Type))
+  (define-method-port
+    get-properties
+    System.Reflection.MonoGenericClass
+    GetProperties
+    (System.Reflection.PropertyInfo[] System.Reflection.BindingFlags))
+  (define-method-port
+    invoke-member
+    System.Reflection.MonoGenericClass
+    InvokeMember
+    (System.Object
+      System.String
+      System.Reflection.BindingFlags
+      System.Reflection.Binder
+      System.Object
+      System.Object[]
+      System.Reflection.ParameterModifier[]
+      System.Globalization.CultureInfo
+      System.String[]))
+  (define-method-port
+    get-event
+    System.Reflection.MonoGenericClass
+    GetEvent
+    (System.Reflection.EventInfo
+      System.String
+      System.Reflection.BindingFlags))
+  (define-method-port
+    get-members
+    System.Reflection.MonoGenericClass
+    GetMembers
+    (System.Reflection.MemberInfo[] System.Reflection.BindingFlags))
+  (define-method-port
+    get-events
+    System.Reflection.MonoGenericClass
+    GetEvents
+    (System.Reflection.EventInfo[] System.Reflection.BindingFlags))
+  (define-method-port
+    get-interface
+    System.Reflection.MonoGenericClass
+    GetInterface
+    (System.Type System.String System.Boolean))
+  (define-method-port
+    get-nested-type
+    System.Reflection.MonoGenericClass
+    GetNestedType
+    (System.Type System.String System.Reflection.BindingFlags))
+  (define-method-port
+    get-nested-types
+    System.Reflection.MonoGenericClass
+    GetNestedTypes
+    (System.Type[] System.Reflection.BindingFlags))
+  (define-method-port
+    get-constructors
+    System.Reflection.MonoGenericClass
+    GetConstructors
+    (System.Reflection.ConstructorInfo[]
+      System.Reflection.BindingFlags))
+  (define-method-port
+    is-defined?
+    System.Reflection.MonoGenericClass
+    IsDefined
+    (System.Boolean System.Type System.Boolean))
+  (define-method-port
+    make-by-ref-type
+    System.Reflection.MonoGenericClass
+    MakeByRefType
+    (System.Type))
+  (define-method-port
+    get-methods
+    System.Reflection.MonoGenericClass
+    GetMethods
+    (System.Reflection.MethodInfo[] System.Reflection.BindingFlags))
+  (define-method-port
+    get-custom-attributes
+    System.Reflection.MonoGenericClass
+    GetCustomAttributes
+    (System.Object[] System.Type System.Boolean)
+    (System.Object[] System.Boolean))
+  (define-method-port
+    make-pointer-type
+    System.Reflection.MonoGenericClass
+    MakePointerType
+    (System.Type))
+  (define-method-port
+    get-interfaces
+    System.Reflection.MonoGenericClass
+    GetInterfaces
+    (System.Type[]))
+  (define-method-port
+    get-fields
+    System.Reflection.MonoGenericClass
+    GetFields
+    (System.Reflection.FieldInfo[] System.Reflection.BindingFlags))
+  (define-method-port
+    to-string
+    System.Reflection.MonoGenericClass
+    ToString
+    (System.String))
+  (define-method-port
+    is-assignable-from?
+    System.Reflection.MonoGenericClass
+    IsAssignableFrom
+    (System.Boolean System.Type))
+  (define-method-port
+    get-field
+    System.Reflection.MonoGenericClass
+    GetField
+    (System.Reflection.FieldInfo
+      System.String
+      System.Reflection.BindingFlags))
+  (define-field-port
+    base-type
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    BaseType
+    System.Type)
+  (define-field-port
+    underlying-system-type
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    UnderlyingSystemType
+    System.Type)
+  (define-field-port
+    name
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    Name
+    System.String)
+  (define-field-port
+    namespace
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    Namespace
+    System.String)
+  (define-field-port
+    full-name
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    FullName
+    System.String)
+  (define-field-port
+    assembly-qualified-name
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    AssemblyQualifiedName
+    System.String)
+  (define-field-port
+    guid
+    #f
+    #f
+    (property:)
+    System.Reflection.MonoGenericClass
+    GUID
+    System.Guid))

@@ -1,0 +1,10 @@
+(library (system member-access-exception)
+  (export new is? member-access-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.MemberAccessException a ...)))))
+  (define (is? a) (clr-is System.MemberAccessException a))
+  (define (member-access-exception? a)
+    (clr-is System.MemberAccessException a)))

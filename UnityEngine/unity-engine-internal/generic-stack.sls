@@ -1,0 +1,11 @@
+(library (unity-engine-internal generic-stack)
+  (export new is? generic-stack?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngineInternal.GenericStack a ...)))))
+  (define (is? a) (clr-is UnityEngineInternal.GenericStack a))
+  (define (generic-stack? a)
+    (clr-is UnityEngineInternal.GenericStack a)))

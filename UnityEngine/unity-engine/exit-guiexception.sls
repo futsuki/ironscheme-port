@@ -1,0 +1,10 @@
+(library (unity-engine exit-guiexception)
+  (export new is? exit-guiexception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.ExitGUIException a ...)))))
+  (define (is? a) (clr-is UnityEngine.ExitGUIException a))
+  (define (exit-guiexception? a)
+    (clr-is UnityEngine.ExitGUIException a)))

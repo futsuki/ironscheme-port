@@ -1,0 +1,11 @@
+(library (mono xml xsl yy-parser yy-exception)
+  (export new is? yy-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new Mono.Xml.Xsl.yyParser.yyException a ...)))))
+  (define (is? a) (clr-is Mono.Xml.Xsl.yyParser.yyException a))
+  (define (yy-exception? a)
+    (clr-is Mono.Xml.Xsl.yyParser.yyException a)))

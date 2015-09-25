@@ -1,0 +1,10 @@
+(library (unity-engine wait-for-fixed-update)
+  (export new is? wait-for-fixed-update?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new UnityEngine.WaitForFixedUpdate a ...)))))
+  (define (is? a) (clr-is UnityEngine.WaitForFixedUpdate a))
+  (define (wait-for-fixed-update? a)
+    (clr-is UnityEngine.WaitForFixedUpdate a)))

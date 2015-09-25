@@ -1,0 +1,11 @@
+(library (system component-model single-converter)
+  (export new is? single-converter?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.ComponentModel.SingleConverter a ...)))))
+  (define (is? a) (clr-is System.ComponentModel.SingleConverter a))
+  (define (single-converter? a)
+    (clr-is System.ComponentModel.SingleConverter a)))

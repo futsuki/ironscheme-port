@@ -1,0 +1,11 @@
+(library (system security unverifiable-code-attribute)
+  (export new is? unverifiable-code-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Security.UnverifiableCodeAttribute a ...)))))
+  (define (is? a) (clr-is System.Security.UnverifiableCodeAttribute a))
+  (define (unverifiable-code-attribute? a)
+    (clr-is System.Security.UnverifiableCodeAttribute a)))

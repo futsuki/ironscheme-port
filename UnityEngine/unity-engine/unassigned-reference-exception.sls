@@ -1,0 +1,11 @@
+(library (unity-engine unassigned-reference-exception)
+  (export new is? unassigned-reference-exception?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new UnityEngine.UnassignedReferenceException a ...)))))
+  (define (is? a) (clr-is UnityEngine.UnassignedReferenceException a))
+  (define (unassigned-reference-exception? a)
+    (clr-is UnityEngine.UnassignedReferenceException a)))

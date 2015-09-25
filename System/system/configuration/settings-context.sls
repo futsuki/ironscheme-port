@@ -1,0 +1,11 @@
+(library (system configuration settings-context)
+  (export new is? settings-context?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Configuration.SettingsContext a ...)))))
+  (define (is? a) (clr-is System.Configuration.SettingsContext a))
+  (define (settings-context? a)
+    (clr-is System.Configuration.SettingsContext a)))

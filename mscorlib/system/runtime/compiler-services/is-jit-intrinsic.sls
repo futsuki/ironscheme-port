@@ -1,0 +1,7 @@
+(library (system runtime compiler-services is-jit-intrinsic)
+  (export is? is-jit-intrinsic?)
+  (import (ironscheme-clr-port))
+  (define (is? a)
+    (clr-is System.Runtime.CompilerServices.IsJitIntrinsic a))
+  (define (is-jit-intrinsic? a)
+    (clr-is System.Runtime.CompilerServices.IsJitIntrinsic a)))

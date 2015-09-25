@@ -1,0 +1,10 @@
+(library (system context-static-attribute)
+  (export new is? context-static-attribute?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...) #'(clr-new System.ContextStaticAttribute a ...)))))
+  (define (is? a) (clr-is System.ContextStaticAttribute a))
+  (define (context-static-attribute? a)
+    (clr-is System.ContextStaticAttribute a)))

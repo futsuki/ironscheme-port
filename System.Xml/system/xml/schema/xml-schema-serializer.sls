@@ -1,0 +1,11 @@
+(library (system xml schema xml-schema-serializer)
+  (export new is? xml-schema-serializer?)
+  (import (ironscheme-clr-port))
+  (define-syntax new
+    (lambda (e)
+      (syntax-case e ()
+        ((_ a ...)
+         #'(clr-new System.Xml.Schema.XmlSchemaSerializer a ...)))))
+  (define (is? a) (clr-is System.Xml.Schema.XmlSchemaSerializer a))
+  (define (xml-schema-serializer? a)
+    (clr-is System.Xml.Schema.XmlSchemaSerializer a)))
