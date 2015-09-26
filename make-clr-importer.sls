@@ -14,29 +14,12 @@
   (clr-using System)
   (clr-using System.Reflection)
 
-  ;; quote from (ironscheme clr dynamic)
-  (define (type-and-namespace type ns)
-    (if (zero? (string-length ns))
-        type
-        (string-append ns "." type)))
-  (define get-type
-    (case-lambda
-     [(name)
-      (get-type name '())]
-     [(name ns)
-      (or (exists
-           (lambda (ns)
-             (let ((t (clr-static-call IronScheme.Runtime.Helpers GetTypeFast (type-and-namespace name ns))))
-               (if (null? t) #f t)))
-           (cons "" ns))
-          (assertion-violation 'get-type "type not found" name ns))]
-     [(name ns . args)
-      (let* ((gt  args)
-             (len (length gt))
-             (t   (get-type (string-append name "`" (number->string len)) ns)))
-        (clr-call Type (MakeGenericType Type[]) t (list->vector gt)))]))
-  ;; end of quote
 
+  (define (get-type name)
+    (let ([t (clr-static-call IronScheme.Runtime.Helpers GetTypeFast name)])
+      (if (null? t) #f t)))
+
+  
   (define (symbol-format fmt . args)
     (string->symbol (apply format fmt args)))
 
@@ -210,8 +193,18 @@
   #;(define-syntax trace
     (lambda (e)
       (syntax-case e ()
-        [(_ x)
-         #'(begin (unity-log (format "~s:~s" (typeof x) x)) x)])))
+        [(_ v)
+         #'(begin
+             (let ([val v])
+               (displayln (format "trace: ~a"
+                                  (call-with-string-output-port
+                                   (lambda (op)
+                                     (pretty-print (syntax->datum val) op)))))
+               val))])))
+  (define-syntax trace
+    (lambda (e)
+      (syntax-case e ()
+        [(_ v) #'v])))
   
   (define (clr-importer-make-all type symconv enforce-syntax?)
     (let* ([typename (clr-prop-get Type FullName type)]
@@ -279,28 +272,6 @@
            ,@(cadr all)
            ))))
 
-  #|
-  (import (make-clr-importer))
-  (clr-importer-make-all
-   (clr-static-call System.Type GetType "UnityEngine.Object, UnityEngine")
-   (lambda (e) e)
-   #f
-  )
-
-  (import (make-clr-importer))
-  (unity-log
-  (clr-importer-make-all
-  (clr-static-call System.Type GetType "UnityEngine.Object, UnityEngine")
-  (lambda (e) e)
-  #f))
-
-  ;; make all importer
-  (import (make-clr-importer-main))
-  (save-all-assemblies)
-
-  (import (make-clr-importer-main))
-  (save-type "System.String")
-  |#
   
   )
 

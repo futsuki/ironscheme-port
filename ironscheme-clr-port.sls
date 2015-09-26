@@ -16,77 +16,33 @@
 
 
   
-  (define cast-to-ironscheme-runtime
-    (let ([->int (lambda (v) (clr-static-call System.Convert ToInt32 v))]
-          [->float (lambda (v) (clr-static-call System.Convert ToDouble v))]
-          [ht (make-eqv-hashtable)]
-          [gettype (lambda (n) (clr-static-call System.Type GetType n))])
-      (for-each
-       (lambda (l) (hashtable-set! ht (gettype (car l)) (cadr l)))
-       `(("System.Byte" ,->int)
-         ("System.SByte" ,->int)
-         ("System.Int16" ,->int)
-         ("System.UInt16" ,->int)
-         ("System.UInt32" ,->int)
-         ("System.Single" ,->float)))
-      (lambda (val)
-        (let* ([t (clr-call System.Object GetType val)]
-               [fn (hashtable-ref ht t '())])
-          (if (null? fn) val (fn val))))))
-
-  (define-syntax macro-debug-print
-    (lambda (e)
-      (syntax-case e ()
-        [(_ f a ...)
-         (begin
-           (display (string-append (apply format (syntax->datum #'f) (syntax->datum #'(a ...))) "\n"))
-           #'(begin #f))])))
-
   #;(define-syntax trace
     (lambda (e)
       (syntax-case e ()
         [(_ v)
          #'(begin
-             (display (format "trace: ~a"
-                              (call-with-string-output-port
-                               (lambda (op)
-                                 (pretty-print (syntax->datum v) op)))))
-             v)])))
+             (let ([val v])
+               (displayln (format "trace: ~a"
+                                  (call-with-string-output-port
+                                   (lambda (op)
+                                     (pretty-print (syntax->datum val) op)))))
+               val))])))
   (define-syntax trace
     (lambda (e)
       (syntax-case e ()
-        [(_ v) #'(begin #f)])))
+        [(_ v) #'v])))
 
   
   (define-syntax define-method-port
     (lambda (e)
-      (define (type-and-namespace type ns)
-        (if (zero? (string-length ns))
-            type
-            (string-append ns "." type)))
-      (define get-type
-        (case-lambda
-         [(name)
-          (get-type name '())]
-         [(name ns)
-          (or (exists
-               (lambda (ns)
-                 (let ((t (clr-static-call IronScheme.Runtime.Helpers GetTypeFast (type-and-namespace name ns))))
-                   (if (null? t) #f t)))
-               (cons "" ns))
-              (assertion-violation 'get-type "type not found" name ns))]
-         [(name ns . args)
-          (let* ((gt  args)
-                 (len (length gt))
-                 (t   (get-type (string-append name "`" (number->string len)) ns)))
-            (clr-call Type (MakeGenericType Type[]) t (list->vector gt)))]))
       (let* ([dummy #f]
              [len-syn #'len]
              [origargs-syn #'origargs]
              [args-syn #'args]
-             ;;[get-type (lambda (s) (clr-static-call System.Type GetType (if (symbol? s) (symbol->string s) s)))]
-             [get-type (lambda (s) (get-type (format "~a" s)))]
-             [is-enumtype? (lambda (s) (clr-prop-get System.Type IsEnum (get-type s)))]
+             [get-type (lambda (n)
+                         (let ([t (clr-static-call IronScheme.Runtime.Helpers GetTypeFast (format "~a" n))])
+                           (if (null? t) #f t)))]
+             [is-enumtype? (lambda (s) (let ([t (get-type s)]) (if t (clr-prop-get System.Type IsEnum t) #f)))]
              [get-syntax (lambda (n) (syntax-format "p-~a" #'dummy n))]
              [get-syntax-list (lambda (n) (map get-syntax (iota n)))]
              [make-pred
@@ -101,15 +57,13 @@
                                      [n-s n])
                          (if checklength?
                              #'(and (eq? n-s len) . pred-s)
-                             #'pred-s))]
+                             #'(and . pred-s)))]
                       [(a . rest)
                        (let ([t (format "~a" (syntax->datum #'a))])
                          (with-syntax ([v (get-syntax n)])
                            (cond
-                            #;[(eqv? t "System.Object")
+                            [(eqv? t "System.Object")
                              (loop #'pred-s #'rest (+ n 1))]
-                            #;[(eqv? t "System.String")
-                             (loop #'((string? v) . pred-s) #'rest (+ n 1))]
                             [(is-enumtype? t)
                              (loop #'((or (pair? v) (symbol? v)) . pred-s) #'rest (+ n 1))]
                             [else
@@ -250,8 +204,6 @@
                        #,@getdef
                        #,@setdef
                        #,@updatedef)))))]))))
-  
-
   
   )
 

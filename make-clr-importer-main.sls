@@ -1,3 +1,12 @@
+#|
+  ;; make all importer
+  (import (make-clr-importer-main))
+  (save-all-assemblies)
+
+  ;; make a type importer
+  (import (make-clr-importer-main))
+  (save-type "System.String")
+|#
 (library (make-clr-importer-main)
   (export save-all-assemblies
           save-type
@@ -34,7 +43,7 @@
            `(,dir ,path))])))
 
   (define (save-type type . option)
-    (guard (ex [#t (display (format "error ~a" ex))])
+    (guard (ex [#t (displayln (format "error ~a" ex))])
       (clr-guard (ex [#t (raise ex)])
         (let-optionals* option ([path-head #f])
           (let ([type (if (string? type) (clr-static-call System.Type GetType type) type)])
