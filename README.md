@@ -3,7 +3,7 @@
 PUBLIC DOMAIN
 
 - IronSchemeから.NETなどのメソッドを呼び出すラッパーを自動作成するものです。
-- いくつかのアセンブリから抽出済みのslsファイルがあります・
+- いくつかのアセンブリから抽出済みのslsファイルがあります。
 - 使い方の例(System.String.StartsWith, mscorlib)。
 ```scheme
 (import (prefix (system string) string-))
