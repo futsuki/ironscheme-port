@@ -2,6 +2,15 @@
 
 PUBLIC DOMAIN
 
+## 参照
+- IronScheme -- https://ironscheme.codeplex.com/
+- IronScheme github -- https://github.com/leppie/IronScheme
+- IronScheme document -- https://ironscheme.codeplex.com/documentation
+- R6RS -- http://www.r6rs.org/
+- R6RSライブラリ(日本語) -- http://practical-scheme.net/wiliki/wiliki.cgi?R6RS%3A%E6%A8%99%E6%BA%96%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA
+
+
+## 概要
 - IronSchemeから.NETなどのメソッドを呼び出すラッパーを自動作成するものです。
 - いくつかのアセンブリから抽出済みのslsファイルがあります。
 - 使い方の例(System.String.StartsWith, mscorlib)。
